@@ -79,6 +79,7 @@ class RegisterController extends Controller
             $profileImage->move(public_path('images/user'), $imageName);
         } else {
             $imageName = 'avatar.jpg';
+            
         }
 
         $users = User::create([
@@ -87,7 +88,7 @@ class RegisterController extends Controller
 
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'location' => $data['location_id'],
+            'location_id' => $data['location_id'],
             'password' => Hash::make($data['password']),
 
         ]);

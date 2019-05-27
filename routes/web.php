@@ -41,6 +41,7 @@ Route::group(['prefix'=>'/books'],function (){
 Route::get('/interest','CategoryController@index');
 Route::post('/user/interest','CategoryController@store');
 Route::get('/show/{id}','CategoryController@show');
+Route::get("/user/profile/{id}","BookController@showprofile");
 
 
 

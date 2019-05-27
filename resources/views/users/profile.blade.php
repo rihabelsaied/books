@@ -1,46 +1,60 @@
-
 @extends('layouts.app')
-<style type="text/css">
-    .profile{
-        max-width:150px;
-        border:5px solid #fff;
-        border-radius: 100%;
-        box-shadow: 2px 2px gray;
-        margin-top:5%
 
-    }
-    .card{
-        margin-top:10%;
-    }
-
-
-
-    .card h1{
-        color:darkred
-    }
-</style>
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
 
-                <div class="col-md-6 ">
-                    <div class="card">
-                        <form method="post" action="/profile/{{$user->id}}">
-                            {{method_field('PUT')}}
-                            @csrf
+<br/>
 
-                        <div class="card-block text-center">
-                            <img class="profile" src="{{asset('images/'.$user->avatar)}}">
-                            <h1>{{$user->Username}}</h1>
-                            <h3>{{$user->email}}</h3>
-                            <h2>{{$user->phone}}</h2>
-                            <button class="btn btn-warning">Edit</button>
-                        </div>
+<span style=" font-size: 60px; margin-right: 250px;">{{$data->Username}}</span>
 
-            </form>
-                    </div>
-                </div>
+<img src="{{asset('images/user/'.$data->avatar)}}" class="card-img-top" style="width:150px ; height:200px;" alt="{{$data->Fanme}}">
+<button type="button" class="btn btn-info">Edit</button>
+<br/>
+<br/>
+<br/>
+<br/>
+<table class="table table-hover table-dark">
+  <tbody>
 
-        </div>
+    <tr>
+      <th scope="row">Username</th>
+      <td>{{$data->Username}}</td>
+      <td> <button type="button" class="btn btn-info">Edit</button> </td>
+
+    </tr>
+    <tr>
+      <th scope="row">Email</th>
+      <td>{{$data->email}}</td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Location</th>
+      <td>{{$data->location->location_name}}</td>
+      <td> <button type="button" class="btn btn-info">Edit</button> </td>
+
+    </tr>
+    <tr>
+      <th scope="row">Phone</th>
+      <td>{{$data->phone}}</td>
+      <td> <button type="button" class="btn btn-info">Edit</button> </td>
+
+    </tr>
+  </tbody>
+
+</table>
+@foreach($data->books as $book)
+<div class="card-group">
+  <div class="card">
+    <img src="{{asset('images/books/'.$book->book_image)}}" class="card-img-top" alt="{{$book->book_name}}">
+    <div class="card-body">
+      <h5 class="card-title">{{$book->book_name}}</h5>
+      <p class="card-text">{{$book->book_author}}</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
+    </div>
+  </div>
+
+@endforeach
+
+
 @endsection

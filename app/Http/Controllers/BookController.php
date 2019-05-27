@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Category;
 use App\Detail;
 use App\Book;
@@ -44,5 +45,10 @@ class BookController extends Controller
         }
 
 
+    }
+
+    public function showprofile($id){
+        $data=User::findOrFail($id);
+        return view('users.profile',compact('data'));
     }
 }
