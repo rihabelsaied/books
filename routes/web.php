@@ -18,6 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile/{id}', 'UserController@index');
+
+
 //Route::post('/interest','')
 /********************* books route*******/
 Route::group(['prefix'=>'/books'],function (){
@@ -27,6 +30,7 @@ Route::group(['prefix'=>'/books'],function (){
 
 
 });
+/***************user*/
 
 
 

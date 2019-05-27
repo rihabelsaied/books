@@ -19,12 +19,20 @@ class BookController extends Controller
         $request->validate([
             'book_name'=>'required|max:50',
             'book_image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'book_author'=>'required|max:50',
+           'author_id'=>'required',
             'language'=>'required'
 
 
         ]);
-        $books= Book::create($request->only(['book_name', 'book_image','book_author','cat_id']));
+        $bookImage = $request->file('book_image');
+        $imageName = str_slug($bookImage->getClientOriginalName());
+        $bookImage->move(public_path('images/books'), $imageName);
+        $books= Book::create([
+            'book_name' => $request->book_name,
+//            'author_id' => $request->author_id,
+            'cat_id' => $request->cat_id,
+            'book_image' => $imageName,
+        ]);
      //dd($books->id);
         $book_id=array("book_id"=>$books->id);
         $details =Detail::create(array_merge($book_id,$request->only(['language'])));

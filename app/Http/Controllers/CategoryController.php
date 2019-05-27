@@ -22,9 +22,13 @@ class CategoryController extends Controller
     public function show($id){
         $user = User::findOrFail($id);
 //        dd($user->interests);
+        if (is_null($user->interests)) {
+            return view('errors.404');
 
-            foreach ($user->interests as $use) {
-                if ( $user->interests) {
+                }
+            else{
+                foreach ($user->interests as $use) {
+
                     $books = [];
                     $int = $use->pivot->cat_id;
                     $cat_ids = explode(',', $int);
@@ -34,9 +38,6 @@ class CategoryController extends Controller
                     }
                     return view('books.favouirate', compact('books'));
 
-                }
-            else{
-                    return view ('errors.404');
                 }
             }
 
