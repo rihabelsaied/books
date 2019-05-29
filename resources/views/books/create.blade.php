@@ -55,7 +55,7 @@
                         </div>
                     <div class="form-group">
                         <label for="ProductColor">Author</label>
-                        <input type="text" class="form-control" name="book_author" required>
+                        {{-- <input type="text" class="form-control" name="book_author" required> --}}
                     </div>
                     <div class="form-group">
                         <label for="ProductColor">language</label>

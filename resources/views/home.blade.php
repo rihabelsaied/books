@@ -26,9 +26,9 @@
                     @endforeach
 
                 </div>
-                                @foreach($locations as $loc)
+                                {{-- @foreach($locations as $loc)
                                     {{$loc->location_name}}
-                                @endforeach
+                                @endforeach --}}
             </div>
         </div>
     </div>

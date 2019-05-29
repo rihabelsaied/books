@@ -47,8 +47,5 @@ class BookController extends Controller
 
     }
 
-    public function showprofile($id){
-        $data=User::findOrFail($id);
-        return view('users.profile',compact('data'));
-    }
+   
 }
