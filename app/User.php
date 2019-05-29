@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'Username','avatar','phone','location','email', 'password',
+        'Username','avatar','phone','location_id','email', 'password','role',
     ];
 
     /**
@@ -44,12 +44,20 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Category','intersets','user_id','cat_id')->withPivot('cat_id', 'user_id');
     }
+
+    public function location()
+    {
+        return $this->belongsTo('App\Location');
+    }
+
+
+
     public function setAvatarAttribute($value)
     {
 
 
         if(! $value){
-            $this->attributes['avatar'] = 'images/avatar.jpg';
+            $this->attributes['avatar'] = 'avatar.jpg';
         }
         else
         {

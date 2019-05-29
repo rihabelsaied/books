@@ -17,7 +17,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -66,7 +66,14 @@
                             <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
 
                             <div class="col-md-6">
-                                <input id="location" type="text" class="form-control" name="location"  required>
+{{--                                <input id="location" type="text" class="form-control" name="location"  required>--}}
+                                <select name="location_id" >
+                                    <option >select</option>
+                                    @foreach($locations as $loc)
+
+                                        <option value="{{$loc->id}}" >{{$loc->location_name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 

@@ -19,4 +19,12 @@ class Book extends Model
     public function details(){
         return $this->hasMany('App\Detail');
     }
+    public function author()
+    {
+        return $this->belongsTo('App\Author');
+    }
+    public function languages()
+    {
+        return $this->belongsToMany('App\Language','book_languages');
+    }
 }

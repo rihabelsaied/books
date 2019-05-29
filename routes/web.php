@@ -18,6 +18,34 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile/{id}', 'UserController@index');
+// users by admin 
+Route::get('/admin/home' , 'UserController@admin');
+Route::get('/user/admin/{id}',[
+    'uses' => 'UserController@admin',
+    'as' => 'user.admin'
+])->middleware('admin');
+
+/*
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+
+    Route::get('/admin/showuser', 'HomeController@dashboard')->name('dashboard');
+
+    Route::get('/users/store', [
+        'uses' => 'UserController@store',
+        'as' => 'users.store',
+    ]);
+    Route::delete('/users/{id}', [
+        'uses' => 'UserController@removeAdminDelete',
+        'as' => 'users.destroy',
+    ]);
+    Route::delete('/users/force/{id}', [
+        'uses' => 'UserController@primanantly',
+        'as' => 'users.primanantly',
+    ]);
+
+*/
+
 //Route::post('/interest','')
 /********************* books route*******/
 Route::group(['prefix'=>'/books'],function (){
@@ -27,6 +55,7 @@ Route::group(['prefix'=>'/books'],function (){
 
 
 });
+/***************user*/
 
 
 
