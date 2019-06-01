@@ -24,7 +24,7 @@
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('UserName') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('Username') ? ' is-invalid' : '' }}" name="Username" value="{{ old('Username') }}" required autofocus>
+                                <input id="Username" type="text" class="form-control{{ $errors->has('Username') ? ' is-invalid' : '' }}" name="Username" value="{{ old('Username') }}" required autofocus>
 
                                 @if ($errors->has('Username'))
                                     <span class="invalid-feedback" role="alert">
@@ -52,26 +52,27 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control" name="phone"  required>
+                                <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
 
                             <div class="col-md-6">
-                                <input class="file-path validate" type="file" placeholder="Upload your file" name="avatar" >
+                                <input class="file-path validate" type="file" placeholder="Upload your file" name="avatar" value="{{ old('avatar')}}" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
 
                             <div class="col-md-6">
-{{--                                <input id="location" type="text" class="form-control" name="location"  required>--}}
-                                <select name="location_id" >
+                               <select name="location_id" >
                                     <option >select</option>
                                     @foreach($locations as $loc)
-
+                                  
                                         <option value="{{$loc->id}}" >{{$loc->location_name}}</option>
+                                       
+                                      
                                     @endforeach
                                 </select>
                             </div>

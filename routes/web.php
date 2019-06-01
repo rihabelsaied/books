@@ -45,7 +45,9 @@ Route::get("/user/profile/{id}","UserController@showprofile");
 Route::get("/user/profile/edit/{id}","UserController@edit");
 Route::put("/user/profile/update/{id}","UserController@update");
 Route::get('/show/{id}','CategoryController@show');
-// Route::get("/user/profile/update/{id}","UserController@editimg");
+
+
+Route::post('/autocomplete/fetch', 'AuthorController@fetch')->name('autocomplete.fetch');
 
 
 

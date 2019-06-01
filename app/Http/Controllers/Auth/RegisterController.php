@@ -90,12 +90,10 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'location_id' => $data['location_id'],
             'password' => Hash::make($data['password']),
+            
 
         ]);
-        $user_id = array("user_id" => $users->id);
-//        $loc =Location::create([$user_id,
-//            'location'=>$data['location']
-//        ]);
+       
 
         return $users;
     }
