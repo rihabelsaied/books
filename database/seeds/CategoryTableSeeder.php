@@ -18,4 +18,5 @@ class CategoryTableSeeder extends Seeder
         \App\Category::create(['name'=>'Romance']);
         \App\Category::create(['name'=>'Travel ']);
     }
+
 }

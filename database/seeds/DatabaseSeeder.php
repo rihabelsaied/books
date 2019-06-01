@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(locationTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
-
+        $this->call(LanguageTableSeeder::class);
 
 
     }

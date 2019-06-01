@@ -11,6 +11,7 @@
         .box{
             width:600px;
             margin:0 auto;
+
         }
     </style>
 </head>
@@ -21,9 +22,13 @@
         if($msg){
             echo "$msg";
             Session::put('msg',null);
+
         }
         ?>
-  </span>
+    </span>
+
+
+
     @if($errors->any())
         <div class="alert-danger">
             <ul>
@@ -67,7 +72,6 @@
                                 @endforeach
                             </select>
                         </div>
-
                         <div>
 
                         <div class="form-group">
@@ -79,11 +83,18 @@
                             @csrf
                         </div>
 
-                    <div class="form-group">
-                        <label for="ProductColor">language</label>
-                        <input type="text" class="form-control" name="language" required>
-                    </div>
+                        <div class="form-group">
+                        <label for="ProductCategory">book language</label>
+                        <div class="form-group">
+                            <select name="language" >
+                                <option >select</option>
+                                @foreach($languages as $language)
 
+                                    <option value="{{$language->id}}" >{{$language->language}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div>
                     <button type="submit" class="btn-info">Add</button>
                 </div>
                 </div>
