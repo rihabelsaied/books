@@ -11,7 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
          $this->call(locationsTableSeeder::class);
          $this->call(languageTableSeeder::class);
+=======
+         $this->call(locationTableSeeder::class);
+>>>>>>> 9330ebf85d90bf428f869365cdda369e9a9b00d6
     }
 }

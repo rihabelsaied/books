@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Auth;
+
 
 class LoginController extends Controller
 {
@@ -21,17 +22,17 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
+
+
+
+    //protected $redirectTo = '/';
     protected function redirectTo (){
         if(Auth::user()->role == 1){
-            return '/admin/home';
+            return '/admin/home'; 
         }
+    
+        return '/home'; 
 
-        return '/home';
     }
 
     /**

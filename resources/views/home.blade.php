@@ -26,9 +26,14 @@
                     @endforeach
 
                 </div>
+<<<<<<< HEAD
 {{--                                @foreach($locations as $loc)--}}
 {{--                                    {{$loc->location_name}}--}}
 {{--                                @endforeach--}}
+=======
+                
+                               
+>>>>>>> 9330ebf85d90bf428f869365cdda369e9a9b00d6
             </div>
         </div>
     </div>
