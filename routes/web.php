@@ -26,6 +26,8 @@ Route::get('/profile/{id}', 'UserController@index');
 Route::group(['prefix'=>'/books'],function (){
     Route::get('/create','BookController@create');
     Route::post('/store','BookController@store');
+    Route::get("/show","BookController@show")->name('allbook');
+    Route::get("/showbook/{id}","BookController@showbook");
 
 
 
@@ -33,14 +35,17 @@ Route::group(['prefix'=>'/books'],function (){
 /***************user*/
 
 
-
-
-
 /******************************/
 //Route::get('/home','CategoryController@index');
 Route::get('/interest','CategoryController@index');
 Route::post('/user/interest','CategoryController@store');
 Route::get('/show/{id}','CategoryController@show');
+/************************ ajax*/
+
+Route::post('/autocomplete/fetch', 'AuthorController@fetch')->name('autocomplete.fetch');
+//Route::get('/borrow/{id}', 'BookController@borrow');
+Route::get("/borrow/{id}", 'BookController@borrow')->name('borrow');
+
 
 
 
