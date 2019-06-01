@@ -14,6 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::view('/admin/home','admin/home');
+/*admin book route*/
+Route::get('/admin/books','AdminBookController@index');
+Route::delete('admin/books/{book}','AdminBookController@destroy');
+Route::get('/books/accept/{book}','AdminBookController@accept');
 
 Auth::routes();
 
