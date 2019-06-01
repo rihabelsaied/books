@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use App\Location;
+
+
+
 class locationTableSeeder extends Seeder
 {
     /**
@@ -11,8 +14,6 @@ class locationTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Location::create(['location_name'=>'cairo']);
-        \App\Location::create(['location_name'=>'Alex']);
         \App\Location::create(['location_name'=>'Daqhalya']);
         \App\Location::create(['location_name'=>'Aswan']);
         \App\Location::create(['location_name'=>'Asyut']);
@@ -36,9 +37,5 @@ class locationTableSeeder extends Seeder
         \App\Location::create(['location_name'=>'Sharqia']);
         \App\Location::create(['location_name'=>'Qena']);
         \App\Location::create(['location_name'=>'Qalubia']);
-
-
-
-
     }
 }

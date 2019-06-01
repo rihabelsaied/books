@@ -15,10 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*admin book route*/
+Route::get('/admin/books','AdminBookController@index');
+Route::delete('admin/books/{book}','AdminBookController@destroy');
+Route::get('/books/accept/{book}','AdminBookController@accept');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profile/{id}', 'UserController@index');
+Route::get('/profile/{id}', 'UserController@userProfile');
+
+
+
+// users by admin
+Route::get('/admin/home' , 'UserController@admin');
+Route::get('/user/admin/{id}',[
+    'uses' => 'UserController@admin',
+    'as' => 'user.admin'
+])->middleware('admin');
+
 
 
 //Route::post('/interest','')

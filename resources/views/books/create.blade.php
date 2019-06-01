@@ -48,7 +48,9 @@
             <i> Create Book</i>
         </div>
         <div class="panel-body">
-            <form method="POST" action="/books/store" enctype="multipart/form-data" autocomplete="off" >
+
+            <form method="POST" action="/books/store" enctype="multipart/form-data" autocomplete="off">
+
 
                 @csrf
                 <div class="col-sm-6">
