@@ -41,6 +41,16 @@ Route::group(['prefix'=>'/books'],function (){
 Route::get('/interest','CategoryController@index');
 Route::post('/user/interest','CategoryController@store');
 Route::get('/show/{id}','CategoryController@show');
+
+
+/************ eman */
+Route::get("/user/profile/{id}","UserController@showprofile");
+// Route::get("/user/profile/editimg/{id}","UserController@editimg");
+Route::get("/user/profile/edit/{id}","UserController@edit");
+Route::put("/user/profile/update/{id}","UserController@update");
+Route::get('/show/{id}','CategoryController@show');
+// Route::get("/user/profile/update/{id}","UserController@editimg");
+
 /************************ ajax*/
 
 Route::post('/autocomplete/fetch', 'AuthorController@fetch')->name('autocomplete.fetch');
