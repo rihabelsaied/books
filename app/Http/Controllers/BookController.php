@@ -35,10 +35,10 @@ class BookController extends Controller
         $bookImage->move(public_path('images/books'), $imageName);
         /************* author name*/
         $author_name=$request->author_name ;
-        $author =Author::where('author_name','=',$author_name)->value('id');
-        if(! $author)
+        $author =Author::where('author_name','=',$author_name)->first();
+        if($author == null)
         {
-         $author =Author::create($request->only('author_name'));
+         $author =Author::create(['author_name'=> $author_name]);
 
         }
 
@@ -46,7 +46,7 @@ class BookController extends Controller
 
         $books= Book::create([
             'book_name' => $request->book_name,
-            'author_id' => $author,
+            'author_id' => $author->id,
             'cat_id' => $request->cat_id,
             'book_image' => $imageName,
         ]);
