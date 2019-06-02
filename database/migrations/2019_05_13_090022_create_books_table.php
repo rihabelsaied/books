@@ -18,7 +18,9 @@ class CreateBooksTable extends Migration
             $table->string('book_name');
             $table->integer('author_id');
             $table->string('book_image');
+            $table->boolean('accept')->default(0);
             $table->integer('cat_id')->nullable();
+            $table->string('status')->default('unborrow');
             $table->timestamps();
         });
     }
