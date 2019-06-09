@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Language;
-
 class LanguageTableSeeder extends Seeder
 {
     /**
@@ -15,6 +14,5 @@ class LanguageTableSeeder extends Seeder
         Language::create(['language'=>'Arabic']);
         Language::create(['language'=>'English']);
         Language::create(['language'=>'Other']);
-
     }
 }

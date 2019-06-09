@@ -39,4 +39,12 @@ class HomeController extends Controller
         return view('home',compact('books'));
     }
 
+    public function dashboard()
+    {
+        return view('/admin/showuser')->with([
+            'users_count' => User::all()->count(),
+            'books_count' => Post::all()->count(),
+
+        ]);
+    }
 }

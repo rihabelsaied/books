@@ -11,13 +11,24 @@
         .box{
             width:600px;
             margin:0 auto;
+
         }
     </style>
 </head>
 <body>
     <span class="alert-success text-center" style="margin-left:30%;font-size:20px">
-    {{Session::get('msg')}}
-  </span>
+    <?php
+        $msg = Session::get('msg');
+        if($msg){
+            echo "$msg";
+            Session::put('msg',null);
+
+        }
+        ?>
+    </span>
+
+
+
     @if($errors->any())
         <div class="alert-danger">
             <ul>
@@ -37,7 +48,9 @@
             <i> Create Book</i>
         </div>
         <div class="panel-body">
-            <form method="POST" action="/books/store" enctype="multipart/form-data" autocomplete="off" >
+
+            <form method="POST" action="/books/store" enctype="multipart/form-data" autocomplete="off">
+
 
                 @csrf
                 <div class="col-sm-6">
@@ -64,13 +77,14 @@
                         <div>
 
                         <div class="form-group">
-                            <input type="text" name="author_name" id="author_name" class="form-control input-lg" placeholder="Enter Name" />
+                            <input type="text" name="author_name" id="author_name" class="form-control input-lg" placeholder="Enter author name" />
 
                             <div id="authorList">
                             </div>
                         </div>
                             @csrf
                         </div>
+
                         <div class="form-group">
                         <label for="ProductCategory">book language</label>
                         <div class="form-group">
@@ -83,13 +97,6 @@
                             </select>
                         </div>
                         <div>
-
-
-                    <!--<div class="form-group">
-                        <label for="ProductColor">language</label>
-                        <input type="text" class="form-control" name="language" required>
-                    </div>-->
-
                     <button type="submit" class="btn-info">Add</button>
                 </div>
                 </div>

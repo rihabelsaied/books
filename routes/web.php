@@ -15,10 +15,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
+/*admin book route*/
+Route::get('/admin/books','AdminBookController@index')->middleware('admin');
+Route::delete('admin/books/{book}','AdminBookController@destroy')->middleware('admin');
+Route::get('/books/accept/{book}','AdminBookController@accept')->middleware('admin');
+
+Auth::routes();
+Route::get('/profile/{id}', 'UserController@userProfile');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profile/{id}', 'UserController@index');
+
+// routs of admin users
+Route::get('/admin/home' , function () {
+    return view('/admin/home');
+})->middleware('admin');
+Route::get('/admin/users' , 'UserController@admin')->middleware('admin');
+Route::get('/admin/user/{id}',[
+    'uses' => 'UserController@admin',
+    'as' => 'user.admin'
+])->middleware('admin');
+Route::post('admin/users/{user}','UserController@destroy');
+
 
 
 //Route::post('/interest','')
@@ -39,6 +56,10 @@ Route::group(['prefix'=>'/books'],function (){
 //Route::get('/home','CategoryController@index');
 Route::get('/interest','CategoryController@index');
 Route::post('/user/interest','CategoryController@store');
+Route::get("/user/profile/{id}","UserController@showprofile");
+// Route::get("/user/profile/editimg/{id}","UserController@editimg");
+Route::get("/user/profile/edit/{id}","UserController@edit");
+Route::put("/user/profile/update/{id}","UserController@update");
 Route::get('/show/{id}','CategoryController@show');
 /************************ ajax*/
 
@@ -46,6 +67,9 @@ Route::post('/autocomplete/fetch', 'AuthorController@fetch')->name('autocomplete
 //Route::get('/borrow/{id}', 'BookController@borrow');
 Route::get("/borrow/{id}", 'BookController@borrow')->name('borrow');
 
+
+
+Route::post('/autocomplete/fetch', 'AuthorController@fetch')->name('autocomplete.fetch');
 
 
 

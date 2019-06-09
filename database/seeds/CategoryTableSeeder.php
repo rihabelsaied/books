@@ -12,14 +12,11 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::create(['name'=>'Drama']);
-        Category::create(['name'=>'Art ']);
-        Category::create(['name'=>'Science fiction ']);
-        Category::create(['name'=>'Romance']);
-        Category::create(['name'=>'Travel ']);
-
-
-
-
+        \App\Category::create(['name'=>'Drama']);
+        \App\Category::create(['name'=>'Art ']);
+        \App\Category::create(['name'=>'Science fiction ']);
+        \App\Category::create(['name'=>'Romance']);
+        \App\Category::create(['name'=>'Travel ']);
     }
+
 }

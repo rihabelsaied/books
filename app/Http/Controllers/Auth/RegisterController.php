@@ -79,6 +79,7 @@ class RegisterController extends Controller
             $profileImage->move(public_path('images/user'), $imageName);
         } else {
             $imageName = 'avatar.jpg';
+            
         }
 
         $users = User::create([
