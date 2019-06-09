@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin');
+        //
     }
     public function editimg($id)
     {
@@ -48,18 +48,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('users.profile', compact('user'));
     }
-
-    // public function destroy($id)
-    // {
-    //     $user = User::findOrFail($id);
-    //     // $user->delete();
-    //     return view('users.profile', compact('user'));
-    // }
-
-
-
-
-
 
     public function area()
     {

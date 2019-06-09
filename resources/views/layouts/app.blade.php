@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- the link of notification -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -49,7 +51,24 @@
                                 </li>
                             @endif
                         @else
+
                             <li class="nav-item dropdown">
+ 
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                     <i class="fa fa-bell"></i>
+                                     <span class="badge badge-light">{{auth()->user()->notifications->count()}}</span>
+                                </a> 
+                                <ul class="dropdown-menu">
+                                    @foreach (auth()->user()->notifications as $notification)
+                                        <li><a href="#">{{$notification->data['data']}}</a></li>
+                                    @endforeach
+                                </ul>
+    
+                                  
+                            </li>
+
+                            <li class="nav-item dropdown">
+
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->Username }} <span class="caret"></span>
                                 </a>

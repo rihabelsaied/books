@@ -1,5 +1,7 @@
 <?php
 
+use App\Notifications\borrow;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +13,11 @@
 |
 */
 
+
 Route::get('/', function () {
+    //notify
+    $user = user::find(1);
+    User::find(1)->notify(new borrow);
     return view('welcome');
 });
 
@@ -30,7 +36,7 @@ Route::get('/profile/{id}', 'UserController@userProfile');
 // routs of admin users
 Route::get('/admin/home' , function () {
     return view('/admin/home');
-});
+})->middleware('admin');
 Route::get('/admin/users' , 'UserController@admin');
 Route::get('/admin/user/{id}',[
     'uses' => 'UserController@admin',
