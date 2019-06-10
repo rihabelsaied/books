@@ -77,7 +77,10 @@
                         <div>
 
                         <div class="form-group">
-                            <input type="text" name="author_name" id="author_name" class="form-control input-lg" placeholder="Enter Name" />
+
+
+                            <input type="text" name="author_name" id="author_name" class="form-control input-lg" placeholder="Enter author name" />
+
 
                             <div id="authorList">
                             </div>

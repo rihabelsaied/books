@@ -62,8 +62,15 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+
+
+                                <div class="connect-fb mt-2">
+                                    <a href="#" class="btn btn-primary">Login With Facebook</a>
+                                </div>
                             </div>
                         </div>
+
+                       
                     </form>
                 </div>
             </div>

@@ -20,16 +20,11 @@ class admin
     public function handle($request, Closure $next)
     {
 
-
-
-
-        if(! Auth::user()->role)
+        if( Auth::user()->role == 1)
         {
-            //Session::flash('success', 'You Haven\'t permission');
-           // return redirect()->back();
-           return redirect('/admin/home');
+            return $next($request);
         }
+        return redirect()->back();
 
-        return $next($request);
     }
 }
