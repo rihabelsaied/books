@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('content')
+
 <form action="/user/interest" method="post">
     @csrf
     <div class="row">
@@ -16,4 +15,4 @@
 </form>
 
 
-    @endsection
+    

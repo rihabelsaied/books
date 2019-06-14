@@ -12,31 +12,64 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view ('auth.login');
+    return redirect("/login");
 });
 
-Auth::routes();
+/*admin book route*/
+Route::get('/admin/books','AdminBookController@index');
+Route::delete('admin/books/{book}','AdminBookController@destroy');
+Route::get('/books/accept/{book}','AdminBookController@accept');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+Route::get("/home","BookController@show")->name('allbook')->middleware('auth');
+
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile/{id}', 'UserController@userProfile');
+
+Route::get("/user/profile/{id}","UserController@showprofile");
+Route::post('/comment',"CommentController@commentStore");
+
+// users by admin
+Route::get('/admin/panal' , 'UserController@admin');
+Route::get('/user/admin/{id}',[
+    'uses' => 'UserController@admin',
+    'as' => 'user.admin'
+])->middleware('admin');
+
+
+
 //Route::post('/interest','')
 /********************* books route*******/
 Route::group(['prefix'=>'/books'],function (){
     Route::get('/create','BookController@create');
     Route::post('/store','BookController@store');
+    Route::get("/showbook/{id}","BookController@showbook");
 
 
 
 });
-
-
-
+/***************user*/
 
 
 /******************************/
 //Route::get('/home','CategoryController@index');
 Route::get('/interest','CategoryController@index');
 Route::post('/user/interest','CategoryController@store');
+Route::get("/user/profile/{id}","UserController@showprofile")->middleware('CheckAuth');
+
+Route::post("/user/profile/edit/{id}","UserController@edit");
+Route::put("/user/profile/update/{id}","UserController@update");
 Route::get('/show/{id}','CategoryController@show');
+/************************ ajax*/
+
+Route::post('/autocomplete/fetch', 'AuthorController@fetch')->name('autocomplete.fetch');
+//Route::get('/borrow/{id}', 'BookController@borrow');
+Route::get("/borrow/{id}", 'BookController@borrow')->name('borrow');
+
+
+
+
 
 
 

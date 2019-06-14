@@ -17,7 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'Username','avatar','phone','location','email', 'password',
+
+        'Username','avatar','phone','location','email', 'password','role',
+
     ];
 
     /**
@@ -37,24 +39,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function books(){
-        return $this->belongsToMany('App\Book','books_users','needed_id','book_id');
+    public function books()
+    {
+        return $this->hasMany('App\Book');
     }
+   
     public function interests()
     {
         return $this->belongsToMany('App\Category','intersets','user_id','cat_id')->withPivot('cat_id', 'user_id');
     }
-    public function setAvatarAttribute($value)
+
+   
+    public function comments()
+
     {
-
-
-        if(! $value){
-            $this->attributes['avatar'] = 'images/avatar.jpg';
-        }
-        else
-        {
-            $this->attributes['avatar'] = $value;
-        }
-
+        return $this->hasMany('App\Comment');
     }
+
+
+    
 }
