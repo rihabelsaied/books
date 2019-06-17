@@ -72,7 +72,7 @@ class BookController extends Controller
 
         if($books){
             Session::flash('msg','This book Is Added Sucessful');
-            return redirect()->route('allbook');
+            return redirect()->back();
 
         }
 
@@ -124,27 +124,18 @@ class BookController extends Controller
         // dd($ratestars);
         
         $user_id = Auth::id();
-        $stars = Rate::where([
-             ['user_id','=',$user_id],
-            //  ['book_id','=',$ratestars[1]]
-        ])->get();
-            
-
-       
-        //  dd($stars);
-        if($stars)
-        {   
-            
-             $stars->update(['star'=>$ratestars[0]]);
-        }
-        else{
-            Rate::create($request->all());
-        }
-        
-    
-    
-        
-        
+        Rate::create([
+            'star'=>$ratestars[0],
+            'user_id'=>$user_id,
+            'book_id'=>$ratestars[1],
+        ]);
+        // $stars = Rate::where([
+        //      ['user_id','=',$user_id],
+        //     //  ['book_id','=',$ratestars[1]]
+        // ])->first();
+        //  $stars->star=$ratestars[0] ;
+        //  $stars->save();  
+   
   return response()->json([
       "success" => true,
       "rate" => $ratestars[0],

@@ -36,7 +36,10 @@ class CategoryController extends Controller
                     $cat_ids = explode(',', $int);
                     foreach ($cat_ids as $cat_id)
                     {
-                        array_push($books, DB::table('books')->where('cat_id', '=', $cat_id)->get());
+                        array_push($books, DB::table('books')->where([['cat_id', '=', $cat_id],
+                        ['accept','=','1']
+                        ])->get());
+                        
                     }
                     return view('books.favouirate', compact('books'));
 

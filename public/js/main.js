@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+/****************************** search function */
     $('#search').keyup(function(){
         var query = $(this).val();
         if(query != '')
@@ -19,10 +19,10 @@ $(document).ready(function(){
 
     $(document).on('click', 'li', function(){
         $('#search').val($(this).text());
-        $('#searchList').fadeOut();
+        // $('#searchList').fadeOut();
     });
 
-});
+
 
 
     $('#author_name').keyup(function(){
@@ -49,17 +49,28 @@ $(document).ready(function(){
     const uploadButton = document.querySelector('.browse-btn');
 const fileInfo = document.querySelector('.file-info');
 const realInput = document.getElementById('real-input');
-// uploadButton.addEventListener('click', () => {
-//     realInput.click();
-//   });
-//   realInput.addEventListener('change', () => {
-//     const name = realInput.value.split(/\\|\//).pop();
-//     const truncated = name.length > 20 
-//       ? name.substr(name.length - 20) 
-//       : name;
-    
-//     fileInfo.innerHTML = truncated;
-//   });
+/*********************************delet book */
+$(".deleteRecord").click(function(event){
+    var id = $(this).attr("id");    
+    console.log(id); 
+    parent=event.target.parentElement.parentElement;  
+    $.ajax(
+    {
+        url: "/admin/books/"+id,        
+        type:'get',   
+        contentType:false,
+        processData:false,
+        success: function (data){
+            // console.log(data.msg);
+             parent.remove();
+        },
+        error:function(data){
+            
+            console.log("does not work");
+        }
+    });
+   
+    });
 
 
 
@@ -67,28 +78,13 @@ const realInput = document.getElementById('real-input');
     $('#star').val($(this).text());
    
 });
-  /**********************************profile */
-  var readURL = function(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('.avatar').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-$(".file-upload").on('change', function(){
-    readURL(ths);
-});
+  
 /**********************checkbox */
 $('#materialIndeterminate2').prop('indeterminate', true);
 /************************ search**************/
 
 
-
+});
 /**************************rating star******************** */
 
 let star_ul = document.getElementById("star_rating");

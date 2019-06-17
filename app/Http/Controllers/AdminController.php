@@ -22,13 +22,13 @@ class AdminController extends Controller
     {
         User::find($id)->delete();
         
-        return redirect('/admin/users');
+        return redirect('/admin/home');
     }
     public function index()
     {
         $books=Book::all();
         $users = User::all();        
-        return view('admin.books.index',["books"=>$books,'users'=>$users]);
+        return view('admin.home',["books"=>$books,'users'=>$users]);
     }
 
     /**
@@ -78,14 +78,13 @@ class AdminController extends Controller
     public function remove($id)
     {
         $book = Book::find($id);
-        $book->delete();
-       return redirect('admin/books');
+        $book->delete();             
     }
     public function accept($id){
         $book=Book::find($id);
         if($book->accept==0){
             $book->update(['accept'=>1]);
         }
-        return redirect('admin/books');
+        return redirect('admin/home');
     }
 }

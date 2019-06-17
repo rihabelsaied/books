@@ -35,6 +35,22 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('users.profile', compact('user'));
     }
+    public function delete($id){
+
+        $deleteuser=User::findOrFail($id);
+        $deleteuser->delete();
+        return redirect('/');
+    }
+    
+    
+    public function deletebook($id){
+    
+        $deletebook=Book::findOrFail($id);
+        $deletebook->delete();
+        return redirect()->back();
+    }
+    
+    
 
     
 

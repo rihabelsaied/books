@@ -24,9 +24,9 @@ Route::group(['middleware'=>'admin'],function(){
     //     'uses' => 'UserController@admin',
     //     'as' => 'user.admin'
     // ]);
-    Route::post('admin/users/{user}','AdminController@destroy');
     Route::get('/admin/home','AdminController@index');
-    Route::delete('admin/books/{book}','AdminController@remove');
+    Route::post('admin/users/{user}','AdminController@destroy');    
+    Route::get('admin/books/{book}','AdminController@remove');
     Route::get('/books/accept/{book}','AdminController@accept');    
 
 });
@@ -52,6 +52,9 @@ Route::group(['prefix'=>'/books'],function (){
     Route::get('/create','BookController@create');
     Route::post('/store','BookController@store');
     Route::get("/showbook/{id}","BookController@showbook");
+    Route::post("/editbook/{id}","BookController@edit");
+    Route::put("/profile/update/{id}","BookController@update");
+
     Route::get("/authorbook/{id}","BookController@authorbook");
 
 
@@ -66,8 +69,12 @@ Route::group(['prefix'=>'/books'],function (){
 Route::get('/interest','CategoryController@index');
 Route::post('/user/interest','CategoryController@store');
 Route::get("/user/profile/{id}","UserController@showprofile")->middleware('CheckAuth');
+Route::post("/user/profile/{id}","UserController@edit"); //ajax stile not
+Route::post("/user/deleteaccount/{id}","UserController@delete"); //delete accont
+Route::post("/user/deletebook/{id}","UserController@deletebook"); //delete accont
 
-Route::post("/user/profile/edit/{id}","UserController@edit");
+
+// Route::post("/user/profile/edit/{id}","UserController@edit");
 Route::put("/user/profile/update/{id}","UserController@update");
 Route::get('/favour/{id}','CategoryController@show');
 /************************ ajax*/

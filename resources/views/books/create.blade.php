@@ -1,6 +1,6 @@
 
-    @extends('layouts.master')
-    @section('body')
+   @extends('layouts.master')
+   @section('body')
     <span class="alert-success text-center" style="margin-left:30%;font-size:20px">
     <?php
         $msg = Session::get('msg');
@@ -24,7 +24,7 @@
             </ul>
         </div>
     @endif
-    <div class="container" style="margin:10%">
+    <!-- <div class="container" style="margin:10%">
         		<div class="row">
         			<div class="col-lg-8 col-12">
         				<div class="contact-form-wrap">
@@ -73,84 +73,99 @@
                         </div>
                     </div>
                 </div>
-    </div>
-    
-                                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <div class="container">
-        <div class="row justify-content-center">
-
-    <div class="col-sm-10 panel panel-default"  >
-        <div class="panel-heading" style="color:#f51167;font-size:25px">
-            <i> Create Book</i>
-        </div>
-        <div class="panel-body">
-
-            <form method="POST" action="/books/store" enctype="multipart/form-data" autocomplete="off">
-
-
-                @csrf
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="ProductName">Name</label>
-                        <input type="text" class="form-control" name="book_name" placeholder="Enter Name Of Book" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="Image"> Image</label>
-                        <input class="file-path validate" type="file" placeholder="Upload your file" name="book_image" required>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="ProductCategory">book Category</label>
-                        <div class="form-group">
-                            <select name="cat_id" >
-                                <option >select</option>
-                                @foreach($categories as $category)
-
-                                    <option value="{{$category->id}}" >{{$category->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div>
-
-                        <div class="form-group">
-                            <input type="text" name="author_name" id="author_name" class="form-control input-lg" placeholder="Enter Name" />
-
-                            <div id="authorList">
-                            </div>
-                        </div>
-                            @csrf
-                        </div>
-
-                        <div class="form-group">
-                        <label for="ProductCategory">book language</label>
-                      
-                        <div>
-                    <button type="submit" class="btn-info">Add</button>
-                </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
     </div> -->
     
+                                
+ <!-- form user info -->
+ <div class="col-md-8 offset-md-2" style="margin-top:10%">
+    <span class="anchor" id="formUserEdit"></span>
+     <hr class="my-5">
+ <div class="card card-outline-secondary">
 
+                        <div class="card-header">
+                            <h3 class="mb-0">Create Books</h3>
+                        </div>
+                        <div class="card-body">
+                            <form  method="post" action="/books/store" role="form"  enctype="multipart/form-data" autocomplete="off">
+                            @csrf
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Book Name</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" name="book_name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Book author</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text"  name="author_name" id="author_name">
+                                        <div id="authorList">
+                                        </div>
+                                             @csrf
+                                    </div>
+                                    </div>
+                              
+                                
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Category</label>
+                                    <div class="col-lg-9">
+                                        <select name="cat_id" id="user_time_zone" class="form-control" size="0">
+                                        @foreach($categories as $category)
+
+                                            <option value="{{$category->id}}" >{{$category->name}}</option>
+                                            @endforeach
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Language</label>
+                                    <div class="col-lg-9">
+                                        <select name="language" id="user_time_zone" class="form-control" size="0">
+                                        <option value="Ar" >Arabic</option>
+                                        <option value="En" >English</option>
+                                        <option value="other">Others</option>
+                                           
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Category</label>
+                                    <div class="col-lg-9">
+
+                                        <input type="file" name="book_image" value="fileupload" id="fileupload">
+                                    </div>
+                                </div>    
+
+
+                                  <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                                    <div class="col-lg-9">
+                                        <input type="reset" class="btn btn-secondary" value="Cancel">
+                                        <input type="submit" class="btn btn-primary" value="Add">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+ </div>
+    </div>
+   
+                    <!-- /form user info -->
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

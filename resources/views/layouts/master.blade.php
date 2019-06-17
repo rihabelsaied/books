@@ -19,7 +19,9 @@
 		<link rel="stylesheet" type="text/css" href="{{asset('styles/bootstrap.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{asset('styles/login-register.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{asset('styles/single_styles.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('styles/single_responsive.css')}}">   
+		<link rel="stylesheet" type="text/css" href="{{asset('styles/single_responsive.css')}}">
+		<!-- Custom styles for this template --> 
+		<link href="{{asset('css/style.css')}}" rel="stylesheet">			  
 
 
 </head>
@@ -77,10 +79,19 @@
 						<ul class="navbar_menu">
 							<li><a href="/home">home</a></li>
 							<li><a href="/favour/{{Auth::id()}}">Favouirate</a></li>
-							<li><a href="#">promotion</a></li>
-							<li><a href="#">pages</a></li>
-							<li><a href="#">blog</a></li>
-							<li><a href="contact.html">contact</a></li>
+							<li><a href="/books/create">Add books</a></li>
+							<li>
+							<form method="POST" action="#" autocomplete="off">
+						
+						<input type="text" name="searchData" id="search" placeholder="search" /> 
+						 <li><a href="#"><i class="fa fa-search" id="searchicon"aria-hidden="true"></i></a></li> 
+
+						<div id="searchList">
+						</div>
+						
+						</form>
+						<li>
+							
 							
 						</ul>
 						<div class="top_nav_right">
@@ -103,16 +114,7 @@
 										</li>
 										</ul>
 						</li>	
-						<form method="POST" action="#" autocomplete="off">
 						
-						<input type="text" name="searchData" id="search" placeholder="search" /> 
-						 <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li> 
-
-						<div id="searchList">
-						</div>
-						@csrf
-
-						</form>
 								
 
 							<li class="checkout">
@@ -183,6 +185,13 @@
 		
 		<script src="{{asset('js/login-register.js')}}"></script>
 		<script src="{{asset('js/main.js')}}"></script>
+		<!-- <script src="{{asset('js/raphael-min.js')}}"></script>
+
+  		 <script src="{{asset('js/jquery-1.9.1.min.js')}}"></script> 
+  		<script src="{{asset('js/script.js')}}"></script>
+  		<script src="{{asset('js/pie.js')}}"></script>
+  		<script src="{{asset('js/jquery.tweet.min.js')}}"></script>
+  		<script src="{{asset('js/jquery.sidr.min.js')}}"></script> -->
 </body>
 
 </html>

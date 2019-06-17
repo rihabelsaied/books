@@ -1592,7 +1592,7 @@ section
 	position: absolute;
 	top: 58px;
 	left: 0;
-	width: calc(80% - 10px);
+	width: 100%;
 	height: calc(31% - 0px);
 	background: rgba(255,255,255,0.9);
 	padding-left: 10px;
@@ -1646,6 +1646,24 @@ section
 .blog_more:hover
 {
 	color: #FE7C7F;
+}
+#search{
+	position: relative;
+}
+#searchicon {
+	position: absolute;
+	left:  493px;
+	top:10%;
+}
+#searchlist{
+	margin-right: 164px;
+	background-color: #f2f2f2;
+	height: 30px;
+	text-align: center
+
+}
+.mb-0{
+	color: #fe4c50;
 }
 
 /*********************************

@@ -52,16 +52,11 @@
 						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="4,{{$data->id}}" ></span></li>
 						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="5,{{$data->id}}" ></span></li>
                     </ul>
-                    <!-- <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
-						<span>Add:</span>
-						
-						<button class="btn btn-danger"><a href="#">borrow</a></button>
-						<div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
-					</div> -->
+                   
 					@if($data->status =='unborrow')
         <form action="{{ route('borrow', $data->id) }}" method="get">
             {{ csrf_field() }}                          
-            <button type="submit" class="btn btn-warning" name="changeStatus" value="">Un borrowed</button>
+            <button type="submit" class="btn btn-sucess" name="changeStatus" value="">Un borrowed</button>
         </form>       
          @elseif($data->status =='pendding')
          <form action="{{ route('borrow', $data->id) }}" method="get">
@@ -71,7 +66,7 @@
             @else
             <form action="{{ route('borrow', $data->id) }}" method="get">
             {{ csrf_field() }}                              
-            <button type="submit" class="btn btn-success" name="changeStatus" value="">borrowed</button>
+            <button type="submit" class="btn btn-default" name="changeStatus" value="">borrowed</button>
         </form>        
         @endif
 
@@ -123,11 +118,11 @@
 								</div>
 								<div class="col-sm-6">
 									<img src="{{asset('images/user/'.$data->user->avatar)}}" alt="avatar" style="width:20%">
-									<p>Owner Of Book:{{$data->user->Username}}<span style="color:#FF6347" ></span></p>
+									<!-- <p>Owner Of Book:{{$data->user->Username}}<span style="color:#FF6347" ></span></p> -->
 								</div>
 								<div class="col-sm-6">
-								<h2>To contact with owner book </h2>
-								<i class="fa fa-phone" aria-hidden="true" ><p style="display:inline-block;padding:10px">phone:{{$data->user->phone}}<span></span></p></i>
+								<h2>To contact with:{{$data->user->Username}} </h2>
+								<i class="fa fa-phone" aria-hidden="true" ><p >phone:{{$data->user->phone}}<span></span></p></i>
 								<i class="fa fa-envelope-o" aria-hidden="true"><p>Email:{{$data->user->email}}<span></span></p></i>
 								</div>
 								
