@@ -3,21 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\User;
 use App\Author;
 use Illuminate\Http\Request;
 
-class AdminBookController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
+
+    //delete user by admin
+    
+    public function destroy($id)
+    {
+        User::find($id)->delete();
+        
+        return redirect('/admin/users');
+    }
     public function index()
     {
         $books=Book::all();
-        $authors=Author::all();
-        return view('admin.books.index',["books"=>$books,"authors"=>$authors]);
+        $users = User::all();        
+        return view('admin.books.index',["books"=>$books,'users'=>$users]);
     }
 
     /**
@@ -25,21 +36,7 @@ class AdminBookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    
 
     /**
      * Display the specified resource.
@@ -47,10 +44,7 @@ class AdminBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -81,7 +75,7 @@ class AdminBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function remove($id)
     {
         $book = Book::find($id);
         $book->delete();

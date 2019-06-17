@@ -1,6 +1,23 @@
-@extends('layouts.app')
-@section('content')
 
+
+
+<div class="container admin">
+    <h2>Admin Controls</h2>
+    <hr>
+    @section('home')
+    <ul class="nav nav-tabs" >
+
+    <li><a  href="{{url('admin/users')}}">Users</a></li>
+    <li><a  href="{{url('admin/books')}}">books</a></li>
+
+    </ul>
+   
+<h1>Books</h1>
+<ul class="nav nav-tabs" >
+  
+        <li><a  href="{{url('admin/users')}}">Users</a></li>
+        <li><a  href="{{url('admin/books')}}">books</a></li>
+</ul>
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -9,7 +26,7 @@
                     <th>book_image</th>
                     <th>cat_id</th>
                     <th>status</th>
-                    <th >Options</th>
+                    <th>Options</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,5 +58,43 @@
     </div>
     </div>
     </div>
-@endsection
+    <h1>Users</h1>
+<ul class="nav nav-tabs" >
+  
+  <li><a  href="{{url('admin/users')}}">Users</a></li>
+  <li><a  href="{{url('admin/home')}}">books</a></li>
+</ul>
+  <table class="table">
+    <thead>
+      <tr> 
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+
+    </thead>
+    <tbody>
+    
+        @foreach($users as $user)
+          <tr>
+
+            <td>{{$user->Username}}</td>
+            <td>{{$user->email}}</td>
+            <td>
+                <form method="POST" action="/admin/users/{{$user->id}}">
+                   
+                   
+                    @csrf
+            
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-danger delete-user" value="Delete user">
+                    </div>
+                </form>
+            </td>
+          </tr>
+        @endforeach
+     
+    </tbody>
+  </table>
+
+
 

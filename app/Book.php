@@ -29,4 +29,8 @@ class Book extends Model
     {
         return $this->hasMany('App\Comment');
     }
+    public function ratesBook()
+   {
+       $this->belongsTo('App\Rate');
+   }
 }

@@ -64,31 +64,7 @@ class UserController extends Controller
 
 
     //admin sara
-    public function admin()
-    {
-
-        $user = User::all();
-        
-        $user->role = 1;
-      
-        return view('admin.home');
-    }
-
-
-    //delete user by admin
-    public function removeAdminDelete($id)
-    {
-        $user = Admin::find($id);
-        File::delete($user->photo);
-        $user->delete();
-        Session::flash('successDelete', "ok");
-        if(Auth::user()->id == $id){
-            Auth::user()->logout();
-            return Redirect::to("administrator");
-        }else{
-            return Redirect::back();
-        }
-    }
+   
 
 
 

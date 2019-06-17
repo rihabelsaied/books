@@ -1,5 +1,6 @@
-
-<form action="/user/interest" method="post">
+@extends('layouts.master')
+@section('body')
+<form action="/user/interest" method="post" style="margin-top:15%">
     @csrf
     <div class="row">
         <div class="col-md-12">
@@ -13,6 +14,13 @@
         </div>
     </div>
 </form>
+<!-- Material unchecked -->
+<!-- Material indeterminate -->
+<div class="form-check">
+  <input type="checkbox" class="form-check-input" id="materialIndeterminate2" checked>
+  <label class="form-check-label" for="materialIndeterminate2">Material indeterminate</label>
+</div>
+@endsection
 
 
     

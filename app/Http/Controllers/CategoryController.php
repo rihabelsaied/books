@@ -21,9 +21,9 @@ class CategoryController extends Controller
 }
     public function show($id){
         $user = User::findOrFail($id);
-        //dd(empty($user->interests->items));
+    // dd(empty($user->interests));
         
-        if (empty($user->interests->items)) {
+        if (empty($user->interests)) {
            return view('errors.403');
 
 

@@ -17,9 +17,20 @@ Route::get('/', function () {
 });
 
 /*admin book route*/
-Route::get('/admin/books','AdminBookController@index');
-Route::delete('admin/books/{book}','AdminBookController@destroy');
-Route::get('/books/accept/{book}','AdminBookController@accept');
+Route::group(['middleware'=>'admin'],function(){
+   
+    
+    // Route::get('/admin/user/{id}',[
+    //     'uses' => 'UserController@admin',
+    //     'as' => 'user.admin'
+    // ]);
+    Route::post('admin/users/{user}','AdminController@destroy');
+    Route::get('/admin/home','AdminController@index');
+    Route::delete('admin/books/{book}','AdminController@remove');
+    Route::get('/books/accept/{book}','AdminController@accept');    
+
+});
+
 
 Auth::routes();
 Route::get("/home","BookController@show")->name('allbook')->middleware('auth');
@@ -31,11 +42,7 @@ Route::get("/user/profile/{id}","UserController@showprofile");
 Route::post('/comment',"CommentController@commentStore");
 
 // users by admin
-Route::get('/admin/panal' , 'UserController@admin');
-Route::get('/user/admin/{id}',[
-    'uses' => 'UserController@admin',
-    'as' => 'user.admin'
-])->middleware('admin');
+
 
 
 
@@ -45,6 +52,8 @@ Route::group(['prefix'=>'/books'],function (){
     Route::get('/create','BookController@create');
     Route::post('/store','BookController@store');
     Route::get("/showbook/{id}","BookController@showbook");
+    Route::get("/authorbook/{id}","BookController@authorbook");
+
 
 
 
@@ -60,14 +69,17 @@ Route::get("/user/profile/{id}","UserController@showprofile")->middleware('Check
 
 Route::post("/user/profile/edit/{id}","UserController@edit");
 Route::put("/user/profile/update/{id}","UserController@update");
-Route::get('/show/{id}','CategoryController@show');
+Route::get('/favour/{id}','CategoryController@show');
 /************************ ajax*/
 
 Route::post('/autocomplete/fetch', 'AuthorController@fetch')->name('autocomplete.fetch');
 //Route::get('/borrow/{id}', 'BookController@borrow');
 Route::get("/borrow/{id}", 'BookController@borrow')->name('borrow');
 
-
+/***************************** rating */
+Route::get('/rateStars/{rate}','BookController@rating');
+/***************************** search */
+Route::post('/searchautocomplete/searchfetch', 'BookController@fetch')->name('autocompletesearch.fetchsearch');
 
 
 

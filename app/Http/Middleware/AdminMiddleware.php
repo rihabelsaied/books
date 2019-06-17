@@ -3,12 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
-
-
 use Auth;
 
-class admin
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -19,17 +16,12 @@ class admin
      */
     public function handle($request, Closure $next)
     {
-
-
-
-
-        if(! Auth::user()->role)
+        if (Auth::check() and Auth::user()->role == 1) 
         {
-            //Session::flash('success', 'You Haven\'t permission');
-           // return redirect()->back();
-           return redirect('/admin/home');
+           
+                return $next($request);
         }
-
-        return $next($request);
+            return redirect()->back();
+        
     }
 }

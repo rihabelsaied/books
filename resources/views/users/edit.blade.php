@@ -20,19 +20,8 @@
            <label for="email">email</label>
            <p>{{ $edit->email }}</p>
 
-           <label for="location">location</label>
-
-            <select name="location_id" >
-                <option value="{{ $edit->location->id }}">{{ $edit->location->location_name }}</option>
-
-                 @foreach($loc as $l)
-
-                    <option value="{{$l->id}}">{{$l->location_name}}</option>
-
-                @endforeach
-            </select>
-        </br>
-           {{-- <input type = "text" name = "location" class="form-control" value="{{ isset($edit->location_id) ? $edit->location_id : '' }}" /> --}}
+          
+      
 
            <label for="phone">Phone</label>
            <input type = "text" name = "phone" class="form-control" value="{{ isset($edit->phone) ? $edit->phone : '' }}" />

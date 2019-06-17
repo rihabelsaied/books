@@ -10,12 +10,16 @@ use App\Book;
 use App\Language;
 use App\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 // use Session;
 
 use auth;
 use Illuminate\Support\Facades\Auth as IlluminateAuth;
+use SebastianBergmann\Environment\Console;
+use App\Rate;
 
 class BookController extends Controller
 {
@@ -97,14 +101,7 @@ class BookController extends Controller
     {
         
         $data=Book::findOrFail($id);
-        // foreach($data->languages as $lang)
-        // {
-        //     $lang=$lang->pivot->user_id;
-           
-        // }
-        // // dd($lang);
-        // $user=DB::table('users')->whereId($lang)->get();
-        // // dd($user);
+       
         
         return view("books.showbook")->with(["data"=>$data]);
     }
@@ -119,7 +116,85 @@ class BookController extends Controller
         session()->flash('Msg', 'Successfully Updated !!');
         return redirect()->back();
     }
+    /*************** rating */
+    public function rating(Request $request,$rate)
+    {   
+        // dd($rate);
+        $ratestars=explode(',',$rate);
+        // dd($ratestars);
+        
+        $user_id = Auth::id();
+        $stars = Rate::where([
+             ['user_id','=',$user_id],
+            //  ['book_id','=',$ratestars[1]]
+        ])->get();
+            
 
+       
+        //  dd($stars);
+        if($stars)
+        {   
+            
+             $stars->update(['star'=>$ratestars[0]]);
+        }
+        else{
+            Rate::create($request->all());
+        }
+        
+    
+    
+        
+        
+  return response()->json([
+      "success" => true,
+      "rate" => $ratestars[0],
+      
+  ]);
+        // dd(response());
+
+    
+    }
+    function fetch(Request $request)
+    {
+        if($request->get('query'))
+        {
+            $query = $request->get('query');
+            $data = DB::table('books')
+                ->where('book_name', 'LIKE', "%{$query}%")
+                
+                ->get();
+            $output = '<ul class="d-block" style="display:block; position:relative">';
+            foreach($data as $row)
+            {
+                $output .= "<li><a href='/books/showbook/{$row->id}' > ".$row->book_name."</a></li>";
+            }
+            $output .= '</ul>';
+
+
+
+            $datax = DB::table('author')
+                ->where('author_name', 'LIKE', "%{$query}%")
+                ->get();
+            $outputt = '<ul class="dropdown-menu" style="display:block; position:relative">';
+            foreach($datax as $rowx)
+            {
+                $outputt .= "<li><a href='/books/authorbook/{$rowx->id}' > ".$rowx->author_name."</a></li>";
+            }
+            $outputt .= '</ul>';
+            $res = $output . $outputt;
+            echo $res;
+        }
+        else{
+            echo "No Results";
+        }
+    }
+    public function authorbook($id)
+    {
+
+        $data=Book::where('author_id','=',$id)->get();
+
+        return view("books.authorbook")->with("data",$data);
+    }
 
 }
 

@@ -38,26 +38,43 @@
 						<h2>Book Name:{{$data->book_name}}</h2>
 						<p>Book Author:{{$data->author->author_name}}...</p>
 						
-						
+				
        
        
 					<div class="free_delivery d-flex flex-row align-items-center justify-content-center">
 						<span class="ti-truck"></span><span>Avaliable</span>
 					</div>
 					
-					<ul class="star_rating">
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+					<ul id="star_rating">
+						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="1,{{$data->id}}" ></span></li>
+						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="2,{{$data->id}}" ></span></li>
+						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="3,{{$data->id}}" ></span></li>
+						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="4,{{$data->id}}" ></span></li>
+						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="5,{{$data->id}}" ></span></li>
                     </ul>
-                    <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
+                    <!-- <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 						<span>Add:</span>
 						
 						<button class="btn btn-danger"><a href="#">borrow</a></button>
 						<div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
-					</div>
+					</div> -->
+					@if($data->status =='unborrow')
+        <form action="{{ route('borrow', $data->id) }}" method="get">
+            {{ csrf_field() }}                          
+            <button type="submit" class="btn btn-warning" name="changeStatus" value="">Un borrowed</button>
+        </form>       
+         @elseif($data->status =='pendding')
+         <form action="{{ route('borrow', $data->id) }}" method="get">
+            {{ csrf_field() }}                              
+            <button type="submit" class="btn btn-info" >pendding</button>      
+          </form>       
+            @else
+            <form action="{{ route('borrow', $data->id) }}" method="get">
+            {{ csrf_field() }}                              
+            <button type="submit" class="btn btn-success" name="changeStatus" value="">borrowed</button>
+        </form>        
+        @endif
+
 				</div>
 			</div>
 		</div>
@@ -195,22 +212,6 @@
 		</div>
 
 	</div>
-
-
-
-
-
-        <!-- @if($data->status =='unborrow')
-            <input type="submit" name="unborrow" value="unborrowed" class="btn btn-warning"></a>
-        @elseif($data->status =='pendding')
-            <input type="submit" name="" value="pendding" class="btn btn-info"></a>
-        @else
-            <input type="submit" name="" value="borrowed" class="btn btn-success"></a>
-        @endif
-
-    -->
-
-
-
+	
 
 @endsection

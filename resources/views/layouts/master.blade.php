@@ -76,20 +76,21 @@
 					<nav class="navbar">
 						<ul class="navbar_menu">
 							<li><a href="/home">home</a></li>
-							<li><a href="#">shop</a></li>
+							<li><a href="/favour/{{Auth::id()}}">Favouirate</a></li>
 							<li><a href="#">promotion</a></li>
 							<li><a href="#">pages</a></li>
 							<li><a href="#">blog</a></li>
 							<li><a href="contact.html">contact</a></li>
 							
 						</ul>
-						<ul class="navbar_user">
+						<div class="top_nav_right">
+						<ul class="top_nav_menu navbar_user">
 							
 							@if(Auth::check() and Auth::user()->role==0)
 							
-							<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>
-							
-							<li><a href="/user/profile/{{Auth::user()->id}}">Profile</li>
+							<li class="account" style="background: #FFFFFF;"><i class="fa fa-user" aria-hidden="true"></i>
+							<ul class="account_selection" style="width:120px">
+						 	<li><a href="/user/profile/{{Auth::user()->id}}">Profile</a></li> 
 
 								<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
 														document.getElementById('logout-form').submit();">
@@ -100,19 +101,31 @@
                                                 @csrf
                                             </form>
 										</li>
-								</a></li>
-								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+										</ul>
+						</li>	
+						<form method="POST" action="#" autocomplete="off">
+						
+						<input type="text" name="searchData" id="search" placeholder="search" /> 
+						 <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li> 
+
+						<div id="searchList">
+						</div>
+						@csrf
+
+						</form>
+								
 
 							<li class="checkout">
 								<a href="#">
-								<i class="fa fa-bell" aria-hidden="true"></i>									<span id="checkout_items" class="checkout_items">2</span>
+								<i class="fa fa-bell" aria-hidden="true"></i>
+								<span id="checkout_items" class="checkout_items">2</span>
 								</a>
 							</li>
 		
 								
 							@endif
 							@if(Auth::check() and Auth::user()->role==1)
-							<li>Dashbord</li>
+							<li><a href="/admin/panal">Dashbord</a></li>
 							<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
 														document.getElementById('logout-form').submit();">
 													{{ __('Logout') }}
@@ -122,18 +135,20 @@
                                                 @csrf
                                             </form>
 										</li>
-								</a></li>
+								
 							@endif
 							
 						</ul>
-						<div class="hamburger_container">
-							<i class="fa fa-bars" aria-hidden="true"></i>
 						</div>
+						<!-- <div class="hamburger_container">
+							<i class="fa fa-bars" aria-hidden="true"></i>
+						</div> -->
 					</nav>
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 </header>
 
@@ -161,13 +176,13 @@
 		<script src="{{asset('plugins/jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
 
 		<script src="{{asset('js/custom.js')}}"></script>
-		<script src="{{asset('js/main.js')}}"></script>
         <script src="{{asset('js/bootstrap.js')}}" type="text/javascript"></script>
 		<script src="{{asset('js/slide.js')}}"></script>
 		<script src="{{asset('js/single_custom.js')}}"></script>
-
-
+		
+		
 		<script src="{{asset('js/login-register.js')}}"></script>
+		<script src="{{asset('js/main.js')}}"></script>
 </body>
 
 </html>
