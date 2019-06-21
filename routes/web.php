@@ -24,8 +24,6 @@ Route::group(['middleware'=>'admin'],function(){
     //     'uses' => 'UserController@admin',
     //     'as' => 'user.admin'
     // ]);
-    Route::get('/admin/home','AdminController@index');
-    Route::post('admin/users/{user}','AdminController@destroy');    
     Route::get('admin/books/{book}','AdminController@remove');
     Route::get('/books/accept/{book}','AdminController@accept');    
 
@@ -87,6 +85,13 @@ Route::get("/borrow/{id}", 'BookController@borrow')->name('borrow');
 Route::get('/rateStars/{rate}','BookController@rating');
 /***************************** search */
 Route::post('/searchautocomplete/searchfetch', 'BookController@fetch')->name('autocompletesearch.fetchsearch');
+
+/***************************** test */
+Route::get('/panal','AdminController@index');
+Route::get('/admin/deleteuser/{user}','AdminController@destroy');  
+Route::get('/admin/category/{name}','AdminController@selectBook');  
+Route::get('/admin/dashbord','AdminController@dashbord');  
+
 
 
 

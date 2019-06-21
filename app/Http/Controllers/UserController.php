@@ -5,8 +5,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Category;
 use App\Location;
-
-
+use App\Book;
 
 class UserController extends Controller
 {
@@ -38,6 +37,14 @@ class UserController extends Controller
     public function delete($id){
 
         $deleteuser=User::findOrFail($id);
+        $books = Book::where('user_id', $deleteuser->id)->get();
+        if($books)
+        {
+            foreach($books as $book)
+            {
+                $book->delete();
+            }
+        }
         $deleteuser->delete();
         return redirect('/');
     }

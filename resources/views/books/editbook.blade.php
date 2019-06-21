@@ -1,7 +1,7 @@
 @extends('layouts.master')
-@section('title')
+@section('title') Create Books|Books @endsection
 @section('body')
-
+@include('layouts.header')
 <div class="container single_product_container">
 		<div class="row">
 			<div class="col">

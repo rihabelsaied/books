@@ -2,6 +2,8 @@
 @section('title') Home|BookShop @endsection
 
 @section('body')
+@include('layouts.header')
+
     <!-- Slider -->
 
 	<div class="main_slider" style="background-image:url('../images/slider_1.jpg')">

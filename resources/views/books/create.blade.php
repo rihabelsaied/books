@@ -1,6 +1,8 @@
 
    @extends('layouts.master')
    @section('body')
+   @include('layouts.header') 
+
     <span class="alert-success text-center" style="margin-left:30%;font-size:20px">
     <?php
         $msg = Session::get('msg');
@@ -24,59 +26,7 @@
             </ul>
         </div>
     @endif
-    <!-- <div class="container" style="margin:10%">
-        		<div class="row">
-        			<div class="col-lg-8 col-12">
-        				<div class="contact-form-wrap">
-                            <h2 class="contact__title">Create Books</h2>
-                            <form  method="Post" class="md-form" action="/books/store" enctype="multipart/form-data" autocomplete="off">
-                                    @csrf
-                        
-                                <div class="single-contact-form space-between">
-                                    <input type="text"  name="book_name" placeholder="Enter Name Of Book*" required>
-                                    <input type="text" name="author_name" id="author_name"  placeholder="Enter Author Name*" >
-
-                                    <div id="authorList">
-                                    </div>
-                                    @csrf
-                                </div>
-                                <div class="form-row">
-                                <div class="form-group">
-                        <label for="ProductCategory">book Category</label>
-                        <div class="form-group">
-                            <select name="cat_id" >
-                                <option >select</option>
-                                @foreach($categories as $category)
-
-                                    <option value="{{$category->id}}" >{{$category->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div>
-    
-   <input type="text" name="language">
-                                </div>
-                               
-
-<input type="file" name="book_image" value="fileupload" id="fileupload">
- <label for="fileupload"> Select a file to upload</label> 
-
-
-
-
-
-
-                                <div class="contact-btn">
-                                <button type="submit" class="btn-info pull-right">Add</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-    </div> -->
-    
-                                
- <!-- form user info -->
+   
  <div class="col-md-8 offset-md-2" style="margin-top:10%">
     <span class="anchor" id="formUserEdit"></span>
      <hr class="my-5">

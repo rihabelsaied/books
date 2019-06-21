@@ -6,6 +6,7 @@ use App\Book;
 use App\User;
 use App\Author;
 use Illuminate\Http\Request;
+use App\Category;
 
 class AdminController extends Controller
 {
@@ -20,55 +21,30 @@ class AdminController extends Controller
     
     public function destroy($id)
     {
-        User::find($id)->delete();
-        
-        return redirect('/admin/home');
+       
+        $deleteuser=User::findOrFail($id);
+       
+        $books = Book::where('user_id', $deleteuser->id)->get();
+        if($books)
+        {
+            foreach($books as $book)
+            {
+                $book->delete();
+            }
+        }
+      $deleteuser->delete();
+
+        return redirect('/panal');
+ 
     }
     public function index()
     {
         $books=Book::all();
-        $users = User::all();        
-        return view('admin.home',["books"=>$books,'users'=>$users]);
+        $users = User::whereRole('0')->get();       
+        return view('admin.admin',compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+   
     /**
      * Remove the specified resource from storage.
      *
@@ -80,11 +56,38 @@ class AdminController extends Controller
         $book = Book::find($id);
         $book->delete();             
     }
-    public function accept($id){
+    public function accept($id)
+    {
         $book=Book::find($id);
         if($book->accept==0){
             $book->update(['accept'=>1]);
         }
         return redirect('admin/home');
+    }
+
+    /***************** books category */
+    public function selectBook($name)
+    {
+        $catName = Category::whereName($name)->value('id');
+        // dd($catName);
+        $books = Book::whereCat_id($catName)->whereStatus('unborrow')->get();
+        $Borrows = Book::whereCat_id($catName)->whereStatus('borrow')->get();
+        $counts=count($books);
+        $count = count($Borrows);
+       
+
+       return view('admin.books',compact(['books','counts','Borrows']));
+
+    }
+    public function dashbord()
+    {
+        $booksBorrow= Book::whereStatus('borrow')->count();
+        $booksUnborrow= Book::whereStatus('unborrow')->count();
+        $booksPend= Book::whereStatus('pending')->count();
+        $users = User::whereRole(0)->count();
+
+        return view('admin.index',compact(['booksBorrow','booksUnborrow','booksPend','users']));
+
+
     }
 }
