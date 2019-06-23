@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rate extends Model
 {
    protected $table="rate";
-   protected $guarded=[];
+   protected $fillable = ['star', 'user_id', 'book_id'];
 
 
    public function user()

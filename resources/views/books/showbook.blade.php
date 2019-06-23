@@ -52,7 +52,7 @@
 						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="3,{{$data->id}}" ></span></li>
 						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="4,{{$data->id}}" ></span></li>
 						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="5,{{$data->id}}" ></span></li>
-                    </ul>
+          </ul>
                    
 					@if($data->status =='unborrow')
         <form action="{{ route('borrow', $data->id) }}" method="get">

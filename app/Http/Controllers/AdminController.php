@@ -39,7 +39,7 @@ class AdminController extends Controller
     }
     public function index()
     {
-        $books=Book::all();
+        
         $users = User::whereRole('0')->get();       
         return view('admin.admin',compact('users'));
     }
@@ -62,7 +62,7 @@ class AdminController extends Controller
         if($book->accept==0){
             $book->update(['accept'=>1]);
         }
-        return redirect('admin/home');
+        return redirect('/admin/panal');
     }
 
     /***************** books category */
@@ -80,13 +80,15 @@ class AdminController extends Controller
 
     }
     public function dashbord()
-    {
+    {   $books = Book::all()->count();
         $booksBorrow= Book::whereStatus('borrow')->count();
         $booksUnborrow= Book::whereStatus('unborrow')->count();
         $booksPend= Book::whereStatus('pending')->count();
+        $booksAccept= Book::whereAccept('0')->count();
+
         $users = User::whereRole(0)->count();
 
-        return view('admin.index',compact(['booksBorrow','booksUnborrow','booksPend','users']));
+        return view('admin.index',compact(['booksBorrow','booksUnborrow','booksPend','users','booksAccept','books']));
 
 
     }

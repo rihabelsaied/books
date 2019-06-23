@@ -44,12 +44,12 @@
 			<div class="row">
 				<div class="col-lg-12 text-right">
 					<div class="logo_container">
-						<a href="#">Book<span>shop</span></a>
+						<a href="/home">Book<span>shop</span></a>
 					</div>
 					<nav class="navbar">
 						<ul class="navbar_menu">
 							<li><a href="/home">home</a></li>
-							<li><a href="/favour/{{Auth::id()}}">Favouirate</a></li>
+							<li><a href="/user/favour/{{Auth::id()}}">Favouirate</a></li>
 							<li><a href="/books/create">Add books</a></li>
 							<li>
 						
@@ -66,16 +66,6 @@
 			<div id="searchList">
 			</div>
           </form>
-
-
-
-
-
-
-
-
-
-
 
 
 						<li>
@@ -114,20 +104,7 @@
 		
 								
 							@endif
-							@if(Auth::check() and Auth::user()->role==1)
-							<li><a href="/admin/panal">Dashbord</a></li>
-							<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
-														document.getElementById('logout-form').submit();">
-													{{ __('Logout') }}
-												</a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                style="display: none;">
-                                                @csrf
-                                            </form>
-										</li>
-								
-							@endif
-							
+						
 						</ul>
 						</div>
 					

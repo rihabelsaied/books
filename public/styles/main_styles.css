@@ -691,7 +691,8 @@ section
 	-ms-transition: color 0.3s ease;
 	-o-transition: color 0.3s ease;
 	transition: color 0.3s ease;
-	margin-top: 20px
+	margin-top: 20px;
+	padding-top:0
 }
 .navbar_menu li a:hover
 {
@@ -1829,10 +1830,12 @@ section
 }
 ul {
 	list-style-type: none;
+	text-align: center
   }
   
   li {
 	display: inline-block;
+	position: relative;
   }
   
   input[type="checkbox"]{
@@ -1897,7 +1900,8 @@ ul {
  .interst
 {
 	position: absolute;
-	top: 10px
+	top: 128px;
+	left: 24px;
 }
 .save{
 	margin-left: 37%;

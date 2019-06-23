@@ -12,41 +12,38 @@
 */
 
 Route::get('/', function () {
-    // return view ('auth.login');
+    
     return redirect("/login");
 });
+Auth::routes();
 
-/*admin book route*/
-Route::group(['middleware'=>'admin'],function(){
+/*admin route*/
+Route::group(['middleware'=>'admin','prefix'=>'/admin'],function(){
    
+    Route::get('/panal','AdminController@index');
+    Route::get('/deleteuser/{user}','AdminController@destroy');  
+    Route::get('/category/{name}','AdminController@selectBook');  
+    Route::get('/dashbord','AdminController@dashbord');  
     
-    // Route::get('/admin/user/{id}',[
-    //     'uses' => 'UserController@admin',
-    //     'as' => 'user.admin'
-    // ]);
-    Route::get('admin/books/{book}','AdminController@remove');
-    Route::get('/books/accept/{book}','AdminController@accept');    
+    
+});
+/**************route home & intrests */
+Route::group(['middleware'=>'auth'],function(){
+    Route::get("/home","BookController@show")->name('allbook');
+    Route::get('/interest','CategoryController@index');
+    Route::post('/user/interest','CategoryController@store');
+
 
 });
 
 
-Auth::routes();
-Route::get("/home","BookController@show")->name('allbook')->middleware('auth');
 
-// Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profile/{id}', 'UserController@userProfile');
-
-Route::get("/user/profile/{id}","UserController@showprofile");
 Route::post('/comment',"CommentController@commentStore");
-
-// users by admin
-
-
 
 
 //Route::post('/interest','')
 /********************* books route*******/
-Route::group(['prefix'=>'/books'],function (){
+Route::group(['prefix'=>'/books','middleware'=>'auth'],function (){
     Route::get('/create','BookController@create');
     Route::post('/store','BookController@store');
     Route::get("/showbook/{id}","BookController@showbook");
@@ -62,20 +59,19 @@ Route::group(['prefix'=>'/books'],function (){
 /***************user*/
 
 
-/******************************/
-//Route::get('/home','CategoryController@index');
-Route::get('/interest','CategoryController@index');
-Route::post('/user/interest','CategoryController@store');
-Route::get("/user/profile/{id}","UserController@showprofile")->middleware('CheckAuth');
-Route::post("/user/profile/{id}","UserController@edit"); //ajax stile not
-Route::post("/user/deleteaccount/{id}","UserController@delete"); //delete accont
-Route::post("/user/deletebook/{id}","UserController@deletebook"); //delete accont
-
-
-// Route::post("/user/profile/edit/{id}","UserController@edit");
-Route::put("/user/profile/update/{id}","UserController@update");
+/******************************profile*********************************/
+Route::group(['prefix'=>'user','middleware'=>'CheckAuth'],function(){
+Route::get("/profile/{id}","UserController@showprofile");
+Route::post("/deleteaccount/{id}","UserController@delete"); //delete accont
+Route::post("/deletebook/{id}","UserController@deletebook"); //delete accont
 Route::get('/favour/{id}','CategoryController@show');
-/************************ ajax*/
+Route::put("/profile/update/{id}","UserController@update");
+
+
+});
+
+
+
 
 Route::post('/autocomplete/fetch', 'AuthorController@fetch')->name('autocomplete.fetch');
 //Route::get('/borrow/{id}', 'BookController@borrow');
@@ -87,10 +83,6 @@ Route::get('/rateStars/{rate}','BookController@rating');
 Route::post('/searchautocomplete/searchfetch', 'BookController@fetch')->name('autocompletesearch.fetchsearch');
 
 /***************************** test */
-Route::get('/panal','AdminController@index');
-Route::get('/admin/deleteuser/{user}','AdminController@destroy');  
-Route::get('/admin/category/{name}','AdminController@selectBook');  
-Route::get('/admin/dashbord','AdminController@dashbord');  
 
 
 

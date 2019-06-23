@@ -16,7 +16,7 @@ class CreateIntersetsTable extends Migration
         Schema::create('intersets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->string('cat_id');
+            $table->string('cat_id')->default(1);
             $table->timestamps();
         });
     }

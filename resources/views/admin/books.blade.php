@@ -21,7 +21,8 @@
                       <th>Book author</th>
                       <th>Language</th>
                       <th>Image</th>
-                      <th>status</th>
+                     
+                      <th>Accept?</th>
                        
                     </tr>
                   </thead>
@@ -34,7 +35,7 @@
                       <td>{{$book->author->author_name}}</td>
                       <td>{{$book->language}}</td>
                       <td>{{$book->book_image}}</td>
-                      <td><a href=""class="btn btn-outline-warning">{{$book->status}}</a></td>
+                      <td><a href=""class="btn btn-outline-warning">{{$book->accept}}</a></td>
                       
                        
     

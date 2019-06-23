@@ -59,6 +59,10 @@ class User extends Authenticatable
     {
         $this->hasMany('App\Rate');
     }
+    public function booksRequest(){
+        return $this->belongsToMany('App\Book','books_users','needed_id','book_id')->withPivot('book_id', 'owner_id');;
+
+    }
 
 
     

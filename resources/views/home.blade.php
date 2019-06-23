@@ -96,8 +96,8 @@
 								@foreach($books as $book)
 							<div class="owl-item product_slider_item">
 								<div class="product-item">
-									<div class="product discount">
-										<div class="product_image">
+									<div class="product discount" >
+										<div class="product_image" >
 										<a href="{{url('/books/showbook/'.$book->id)}}">
 										</div><img src="{{asset('images/books/'.$book->book_image)}}" alt=""></a>
 										<div class="favorite favorite_left"></div>
@@ -123,8 +123,7 @@
 			</div>
 		</div>
 	</div>
-
-	
+@include('layouts.footer')	
 						
 		
 	

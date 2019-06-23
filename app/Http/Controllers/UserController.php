@@ -6,6 +6,7 @@ use App\User;
 use App\Category;
 use App\Location;
 use App\Book;
+use DB;
 
 class UserController extends Controller
 {
@@ -29,23 +30,26 @@ class UserController extends Controller
         return redirect("/user/profile/$id");
     }
 
-    public function userProfile($id)
-    {
-        $user = User::findOrFail($id);
-        return view('users.profile', compact('user'));
-    }
+   
     public function delete($id){
 
         $deleteuser=User::findOrFail($id);
         $books = Book::where('user_id', $deleteuser->id)->get();
+        DB::table('intersets')->where('user_id', $deleteuser->id)->delete();
+        DB::table('books_users')->where('owner_id', $deleteuser->id)->delete();
+
+      
+
+
         if($books)
         {
             foreach($books as $book)
             {
                 $book->delete();
             }
+         
         }
-        $deleteuser->delete();
+           $deleteuser->delete();
         return redirect('/');
     }
     
@@ -57,19 +61,6 @@ class UserController extends Controller
         return redirect()->back();
     }
     
-    
-
-    
-
-
-
-
-    public function area()
-    {
-        return view('auth.register', compact('loctions'));
-    }
-
-
     public function showprofile($id)
     {
         $data = User::findOrFail($id);
@@ -86,7 +77,7 @@ class UserController extends Controller
     }
 
 
-    //admin sara
+   
    
 
 

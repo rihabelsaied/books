@@ -17,10 +17,6 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on('click', 'li', function(){
-        $('#search').val($(this).text());
-        // $('#searchList').fadeOut();
-    });
 
 
 
@@ -91,28 +87,27 @@ let star_ul = document.getElementById("star_rating");
 ajax = new XMLHttpRequest();
 
 star_ul.onclick = function(event){
+    for(i=0; i<5; i++){
+        star_ul.children[i].children[0].style.color= "#000"
+    }
 if(event.target.tagName=="SPAN"){
     let params=event.target.getAttribute("value");
     let star = params.split(',')[0];
-    console.log(star);
-    console.log(params);
     if(star > 0 && star <= 5){
         ajax.open("GET","http://localhost:8000/rateStars/"+params );
 
         ajax.send();
         ajax.onreadystatechange = ()=>{
-        if(ajax.readyState === 4 && ajax.status === 200){
+        if(ajax.readyState == 4 && ajax.status == 200){
             response = JSON.parse(ajax.responseText);
-            console.log(response);
             if(response.success){
-                console.log("success");
-            event.target.style.color = "#fac451";
+                event.target.style.color = "#fac451";
+                let sibLength = $(event.target).parent().prevUntil("ul").length;
+                for(i =0 ;i < sibLength; i++ ){
+                    $("#star_rating").children()[i].children[0].style.color = "#fac451"
+                }
 
-
-            }else{
-                console.log("failed");
             }
-            
         }
     }
 }

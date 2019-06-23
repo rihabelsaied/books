@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('body')
-
+@include('layouts.header')
 <!-- Blogs -->
 
 <div class="blogs" >
@@ -12,8 +12,14 @@
 						<h2>Favouriates</h2>
 					</div>
 				</div>
+				
+
 			</div>
+			<div class="row">
+				To add new Intrests go  <a href="/interest">here</a>
+				</div>
 			<div class="row blogs_container">
+			
             @foreach($books as $book)
             @foreach($book as $bok)
 				<div class="col-lg-4 blog_item_col">
@@ -21,27 +27,33 @@
 						<div class="blog_background">
                             <img  class="image" src="{{asset('images/books/'.$bok->book_image)}}" style="height:370px;width:100%">
 						</div>
-                             <!-- style="background-image:url('images/books/'.{{$bok->book_image}})"></div> -->
 						<div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
 							<h4 class="blog_title">{{$bok->book_name}}</h4>
-							<span class="blog_meta">by owner </span>
-							<!-- <a class="blog_more" href="#"> -->
-                            @if($bok->status =='unborrow')
-                                <input type="submit" name="unborrow" value="unborrowed" class="blog_more btn btn-success"></a>
-                            @elseif($bok->status =='pendding')
-                                <input type="submit" name="" value="pendding" class="btn btn-warning"></a>
-                            @else
-                                <input type="submit" name="" value="borrowed" class="btn btn-success"></a>
-                            @endif
-                          <!-- </a> -->
+							@if($bok->status =='unborrow')
+								<form action="{{ route('borrow', $bok->id) }}" method="get">
+									{{ csrf_field() }}                          
+									<button type="submit" class="btn btn-sucess" name="changeStatus" value="">Un borrowed</button>
+								</form>       
+							@elseif($bok->status =='pendding')
+								<form action="{{ route('borrow', $bok->id) }}" method="get">
+									{{ csrf_field() }}                              
+									<button type="submit" class="btn btn-info" >pendding</button>      
+								</form>       
+							@else
+									<form action="{{ route('borrow', $bok->id) }}" method="get">
+									{{ csrf_field() }}                              
+									<button type="submit" class="btn btn-default" name="changeStatus" value="">borrowed</button>
+								</form>        
+        @endif
 						</div>
 					</div>
                 </div>
                 @endforeach
-                @endforeach
+				@endforeach
 				
 			</div>
 		</div>
 	</div>
+	@include('layouts.footer')
 
 @endsection

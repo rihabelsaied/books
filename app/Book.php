@@ -18,6 +18,10 @@ class Book extends Model
     {
         return $this->belongsTo('App\Category');
     }
+    public function users(){
+        return $this->belongsToMany('App\User','books_users','book_id','needed_id')->withPivot('book_id', 'book_id');;
+
+    }
    
    
     public function author()

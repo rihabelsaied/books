@@ -462,7 +462,7 @@ section
 .navbar
 {
 	width: auto;
-	height: 100px;
+	height: 68px;
 	float: right;
 	padding-left: 0px;
 	padding-right: 0px;
@@ -478,7 +478,7 @@ section
 	font-size: 13px;
 	font-weight: 500;
 	text-transform: uppercase;
-	padding: 20px;
+	/* padding: 20px; */
 	-webkit-transition: color 0.3s ease;
 	-moz-transition: color 0.3s ease;
 	-ms-transition: color 0.3s ease;
@@ -613,6 +613,9 @@ section
 	right: 10px;
 	padding: 10px;
 	z-index: 1;
+}
+.main_slider{
+	margin: 0
 }
 .hamburger_close i
 {

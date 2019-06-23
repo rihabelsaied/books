@@ -31,7 +31,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/panal">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -78,7 +78,7 @@
 
        <!-- Nav Item - Charts -->
        <li class="nav-item">
-        <a class="nav-link" href="/panal">
+        <a class="nav-link" href="admin/panal">
           <i class="fas fa-fw fa-user"></i>
           <span>Users</span></a>
       </li>
@@ -192,10 +192,10 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <!-- <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
-                </a>
+                </a> -->
                 
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -242,7 +242,16 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="/login">Logout</a>
+          <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+														document.getElementById('logout-form').submit();">
+                   <button class="btn btn-primary" type="button" data-dismiss="modal">logout</button>
+
+								</a>
+               <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                 style="display: none;">
+                   @csrf
+               </form>
+					</li>
         </div>
       </div>
     </div>

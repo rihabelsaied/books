@@ -3,10 +3,10 @@
 @section('body')
 @extends('layouts.header')
 
-<div class="container " style="background:#f2f2f2;margin-top:15%">
+<div class="container " style="background:#f2f2f2;margin-top:15%;padding-bottom:20px">
 <div class="col-xl-12 ">
   <nav>
-  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+  <div class="nav nav-tabs mb-5" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Books</a>
     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Request</a>
@@ -16,7 +16,6 @@
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
   <div class="col-md-8 offset-md-2" >
     <span class="anchor" id="formUserEdit"></span>
-     <hr class="my-5">
  <div class="card card-outline-secondary">
 
                         <div class="card-header">
@@ -64,13 +63,11 @@
                                 
                                  <div class="card-footer" >
                                   <div class="form-group row">
-                                    <div class="col-lg-4 offset-3">
-                                          <form class="form-horizonta " action="/user/deleteaccount/{{$data->id}}" method="post">
-                                                @csrf
-                                                <fieldset>
-                                                      <button type="submit" class="btn btn-default pull-right btn-lg btn btn-danger">delete account</button>
-                                                </fieldset>
-                                                </form>
+                                    <div class="col-lg-4 offset-4">
+                                          <form class="form-horizonta " action="/user/deleteaccount/{{$data->id}}" method="post" style="width:55%">
+                                            @csrf
+                                            <button type="submit" class="btn btn-lg btn-danger" style="width:100%;font-size:13px">delete account</button>
+                                          </form>
                                       </div>
                                   </div>
                                   </div>
@@ -83,7 +80,7 @@
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
     @forelse($data->books as $book)
 
-  <div class="card mb-5" style="max-width: 540px;">
+  <div class="card mb-5" style="max-width: 540px;margin:30px">
   <div class="row no-gutters">
     <div class="col-md-4">
     <a href="/books/showbook/{{$book->id}}">
@@ -95,7 +92,6 @@
         <h5 class="card-title">{{$book->book_name}}</h5>
         <p class="card-text">Author : {{$book->author->author_name}}</p>
         <p class="card-text">Language : {{$book->language}}</p>
-        <p class="card-text">Status : {{$book->status}}</p>
         <p class="card-text"><small class="text-muted">Last updated : {{$book->updated_at}}</small></p>
 
 {{--  delete  --}}
@@ -106,6 +102,10 @@
                 <button type="submit" class="  btn btn-danger">delete</button>
           </fieldset>
           </form>
+          <div class="col-md-4">
+          <button type="sumbit" class="btn btn-primary">{{$book->status}}</button>
+          </div>
+
           </div>
 
 
@@ -123,7 +123,12 @@
 
 
   </div>
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+    @foreach($data->booksRequest as $dat)                                                                                                          
+    
+     <p style="color:red">{{$dat->pivot->book_id}}</p>
+     @endforeach
+  </div>
 </div>
 </div>
 </div>
