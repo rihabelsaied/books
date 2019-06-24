@@ -13,11 +13,11 @@
 					</div>
 					<div class="col-md-6 text-right">
 						<div class="top_nav_right">
-							<ul class="top_nav_menu">
+							<ul >
 							<li class="account">
-									<a href="#">
-										My Account
-										<i class="fa fa-angle-down"></i>
+									<a href="/user/profile/{{Auth::user()->id}}">
+										{{Auth::user()->Username}}
+										
 									</a>
 									<ul class="account_selection">
 									@guest
@@ -49,7 +49,7 @@
 					<nav class="navbar">
 						<ul class="navbar_menu">
 							<li><a href="/home">home</a></li>
-							<li><a href="/user/favour/{{Auth::id()}}">Favouirate</a></li>
+							<li><a href="/user/favour/{{Auth::id()}}">Intrests</a></li>
 							<li><a href="/books/create">Add books</a></li>
 							<li>
 						

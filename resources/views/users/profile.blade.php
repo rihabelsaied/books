@@ -29,31 +29,31 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">User Name</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="{{$data->Username}}">
+                                        <input class="form-control" type="text" value="{{$data->Username}}" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Email</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="email" value="{{$data->email}}">
+                                        <input class="form-control" type="email" value="{{$data->email}}" disabled>
                                        
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Phone</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="{{$data->phone}}">
+                                        <input class="form-control" type="text" value="{{$data->phone}}" disabled>
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Location</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="{{$data->location}}">
+                                        <input class="form-control" type="text" value="{{$data->location}}" disabled>
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                       <div class="col-lg-4 offset-4">
-                                    <input type="submit" class="btn btn-info btn-lg" value="Edit Info">
+                                    <input type="submit" class="btn btn-info btn-lg" value="Edit Info" disabled>
                                       </div>
                                     </div>
 
@@ -80,38 +80,41 @@
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
     @forelse($data->books as $book)
 
-  <div class="card mb-5" style="max-width: 540px;margin:30px">
+  <div class="card mb-5" style="width:440px;margin:30px">
   <div class="row no-gutters">
     <div class="col-md-4">
     <a href="/books/showbook/{{$book->id}}">
       <img  src="{{asset('images/books/'.$book->book_image)}}" class="card-img" alt="{{$book->book_name}}"  style="width:150px;height:200px;  margin: 25px;">
     </a>
     </div>
-    <div class="col-md-6" style="  margin: 25px;" >
+    <div class="col-md-6" style="width:400px;margin: 25px;" >
       <div class="card-body">
         <h5 class="card-title">{{$book->book_name}}</h5>
         <p class="card-text">Author : {{$book->author->author_name}}</p>
         <p class="card-text">Language : {{$book->language}}</p>
         <p class="card-text"><small class="text-muted">Last updated : {{$book->updated_at}}</small></p>
+        @if($book->status=="borrow")
+        <p>click in borrow button if days of borrowing off and would like to return book borrow again</p>
+
+        <form method="post" action="/changeStatus/{{$book->id}}"> 
+           @csrf
+          <button type="submit" class="btn btn-success">{{$book->status}}</button>
+        </form>
+        @else
+        <p class="card-text">status: {{$book->status}}</p>
+        <div class="col-md-4">
+            <form class="form-horizonta"  method="post" action="/deletebook/{{$book->id}}" >
+              @csrf
+              <button type="submit" class="btn btn-danger">delete</button>
+          
+            </form>
+          </div>
+
+        @endif
+
 
 {{--  delete  --}}
-          <div class="col-md-4">
-          <form class="form-horizonta " action="/user/deletebook/{{$book->id}}" method="post">
-          @csrf
-          <fieldset>
-                <button type="submit" class="  btn btn-danger">delete</button>
-          </fieldset>
-          </form>
-          <div class="col-md-4">
-          <button type="sumbit" class="btn btn-primary">{{$book->status}}</button>
-          </div>
 
-          </div>
-
-
-
-
-     
       </div>
     </div>
   </div>
@@ -125,18 +128,27 @@
   </div>
   <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
     @foreach($data->booksRequest as $dat)                                                                                                          
-    
-     <p style="color:red">{{$dat->pivot->book_id}}</p>
-     @endforeach
+   
+
+     <div class="card mb-5" style="max-width: 540px;margin:30px">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+   
+          <img  src="{{asset('images/books/'.$dat->book_image)}}" class="card-img"   style="width:150px;height:200px;  margin: 25px;">
+        </div>
+    <div class="col-md-6" style="  margin: 25px;" >
+      <div class="card-body">
+        <h5 class="card-title">{{$dat->book_name}}</h5>
+        <p class="card-text">Author : {{$dat->author->author_name}}</p>
+        <p class="card-text">Language : {{$dat->language}}</p>
+        <p class="card-text"><small class="text-muted">Last updated : {{$dat->updated_at}}</small></p>
+      </div>
+    </div>
   </div>
+  </div>
+
+     @endforeach
+  
 </div>
-</div>
-</div>
-
-
-
-
-
-
 
 @endsection

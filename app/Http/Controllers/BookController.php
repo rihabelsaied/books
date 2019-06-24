@@ -35,9 +35,9 @@ class BookController extends Controller
     {
         $user_id = Auth::id();
         $request->validate([
-            'book_name' => 'required|max:50',
+            'book_name' => 'string|required|max:50',
             'book_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            //            'author_id'=>'required',
+            
             'language' => 'required'
 
 
@@ -63,14 +63,13 @@ class BookController extends Controller
             'cat_id' => $request->cat_id,
             'book_image' => $imageName,
             'language' => $request->language,
-            // $request->all()
+            
 
         ]);
-
-
-        if ($books) {
+        if ($books) 
+        {
             Session::flash('msg', 'This book Is Added Sucessful');
-            return redirect()->back();
+            return redirect('/home');
         }
     }
 
@@ -104,12 +103,18 @@ class BookController extends Controller
 
 
 
-    public function borrow($id)
-    {
+    public function borrow(Request $request,$id)
+    {   $needed_id = Auth::id();
         $data = Book::find($id);
-        $data->update(['status' => 'pendding']);
-        session()->flash('Msg', 'Successfully Updated !!');
-        return redirect('/home');
+        $data->update(['status' => 'borrow']);
+        DB::table('books_users')->insert([
+            'book_id'=>$request->book_id,
+            'needed_id'=>$needed_id,
+            'owner_id'=>$request->owner_id,
+            
+        ]);
+        return redirect()->back();
+       
     }
     /*************** rating */
     public function rating(Request $request, $rate)
@@ -178,4 +183,13 @@ class BookController extends Controller
 
         return view("books.authorbook")->with("data", $data);
     }
+    /********************* end borrow  */
+    public function changestatus($id)
+    {
+        $status = Book::findOrFail($id);
+        $status->update(['status'=>'unborrow']);
+        return redirect()->back();
+        
+    }
+
 }

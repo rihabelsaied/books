@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') SingleItem|BookShop @endsection
+@section('title') Single|Books@endsection
 @section('body')
 @include('layouts.header')
 <div class="container single_product_container">
@@ -54,22 +54,16 @@
 						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="5,{{$data->id}}" ></span></li>
           </ul>
                    
-					@if($data->status =='unborrow')
-        <form action="{{ route('borrow', $data->id) }}" method="get">
+	
+        <form action="/borrow/{{$data->id}}" method="post">
+					<input type="hidden" value="{{$data->id}}" name="book_id">
+					<input type="hidden" value="{{$data->user_id}}" name="owner_id">
+
             {{ csrf_field() }}                          
-            <button type="submit" class="btn btn-sucess" name="changeStatus" value="">Un borrowed</button>
+            <button type="submit" class="btn btn-success" >Borrow</button>
         </form>       
-         @elseif($data->status =='pendding')
-         <form action="{{ route('borrow', $data->id) }}" method="get">
-            {{ csrf_field() }}                              
-            <button type="submit" class="btn btn-info" >pendding</button>      
-          </form>       
-            @else
-            <form action="{{ route('borrow', $data->id) }}" method="get">
-            {{ csrf_field() }}                              
-            <button type="submit" class="btn btn-default" name="changeStatus" value="">borrowed</button>
-        </form>        
-        @endif
+                  
+       
 
 				</div>
 			</div>
@@ -118,7 +112,6 @@
 									<h4>Additional Information</h4>
 								</div>
 								<div class="col-sm-6">
-									<img src="{{asset('images/user/'.$data->user->avatar)}}" alt="avatar" style="width:20%">
 									<!-- <p>Owner Of Book:{{$data->user->Username}}<span style="color:#FF6347" ></span></p> -->
 								</div>
 								<div class="col-sm-6">
@@ -154,7 +147,6 @@
                                     <div class="user">
 										<div class="user_pic">
                                            
-                                         <!-- <img src="{{asset('images/user/'.$comment->user->avatar)}}" alt="avatar"> -->
 
                                         </div>
 										
@@ -208,6 +200,7 @@
 		</div>
 
 	</div>
+	@endsection
 	
 
-@endsection
+

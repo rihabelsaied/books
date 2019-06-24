@@ -60,22 +60,24 @@ Route::group(['prefix'=>'/books','middleware'=>'auth'],function (){
 
 
 /******************************profile*********************************/
-Route::group(['prefix'=>'user','middleware'=>'CheckAuth'],function(){
+Route::group(['prefix'=>'/user','middleware'=>'CheckAuth'],function(){
 Route::get("/profile/{id}","UserController@showprofile");
 Route::post("/deleteaccount/{id}","UserController@delete"); //delete accont
-Route::post("/deletebook/{id}","UserController@deletebook"); //delete accont
 Route::get('/favour/{id}','CategoryController@show');
 Route::put("/profile/update/{id}","UserController@update");
 
 
 });
+Route::post("/deletebook/{id}","UserController@deletebook"); //delete accont
+
 
 
 
 
 Route::post('/autocomplete/fetch', 'AuthorController@fetch')->name('autocomplete.fetch');
 //Route::get('/borrow/{id}', 'BookController@borrow');
-Route::get("/borrow/{id}", 'BookController@borrow')->name('borrow');
+Route::post("/borrow/{id}", 'BookController@borrow')->name('borrow');
+Route::post('/changeStatus/{id}','BookController@changeStatus');
 
 /***************************** rating */
 Route::get('/rateStars/{rate}','BookController@rating');

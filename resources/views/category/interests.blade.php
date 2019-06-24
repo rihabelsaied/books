@@ -2,10 +2,10 @@
 @section('body')
 
 
-<div class="container-fluid" style="margin-top:15%">
+<div class="container-fluid" style="margin-top:5%">
     <div class="row ">
-        <p class="int"> Choose Your Interests Please</p>
-        <div class="col-xl-8 offset-2">
+        <h1 class="mx-auto mb-5  alert alert-danger"  #fe4c50> Choose Your Interests Please</h1>
+        <div class=" mx-auto col-xl-8 offset-1 "style="padding-left:100px" >
             <form action="/user/interest" method="post">
                 @csrf
             <ul style="width:86%">
@@ -18,7 +18,7 @@
             @endforeach 
  
 </ul>
-<button class=" btn btn-primary btn-lg save">Save</button>
+<button class=" btn btn-success btn-lg save"style="margin-top:9%  margin-bottom:9%" >Save</button>
 
 </form>
         </div>

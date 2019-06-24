@@ -57,14 +57,15 @@ class UserController extends Controller
     public function deletebook($id){
     
         $deletebook=Book::findOrFail($id);
+       
         $deletebook->delete();
+       
         return redirect()->back();
     }
     
     public function showprofile($id)
     {
         $data = User::findOrFail($id);
-        
         return view('users.profile', compact('data'));
     }
 
@@ -72,14 +73,8 @@ class UserController extends Controller
     public function index($id)
     {
         $users = User::all();
-        //$user = User::findOrFail($id);
         return view('users.profile',compact('user'));
     }
-
-
-   
-   
-
-
+    
 
 }

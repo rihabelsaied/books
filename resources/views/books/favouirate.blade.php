@@ -9,7 +9,7 @@
 			<div class="row">
 				<div class="col text-center">
 					<div class="section_title">
-						<h2>Favouriates</h2>
+						<h2>Intrests</h2>
 					</div>
 				</div>
 				

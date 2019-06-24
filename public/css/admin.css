@@ -3,7 +3,7 @@
     font-size: 30px;
     color: #fe4c50;
 }
-.bg-login-image,.bg-register-image {
+.bg-login-image,.bg-register-image,.bg-password-image {
     
 background: url("../images/books/bg.jpeg");
 

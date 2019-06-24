@@ -1,21 +1,12 @@
 
    @extends('layouts.master')
    @section('body')
-   @include('layouts.header') 
-
-    <span class="alert-success text-center" style="margin-left:30%;font-size:20px">
-    <?php
-        $msg = Session::get('msg');
-        if($msg){
-            echo "$msg";
-            Session::put('msg',null);
-
-        }
-        ?>
-    </span>
-
-
-
+  @include('layouts.header') 
+     
+   
+ <div class="col-md-8 offset-md-2" style="margin-top:10%">
+    <span class="anchor" id="formUserEdit" >
+    <hr class="my-5">
     @if($errors->any())
         <div class="alert-danger">
             <ul>
@@ -26,10 +17,17 @@
             </ul>
         </div>
     @endif
+    
+    <?php
+        $msg = Session::get('msg');
+        if($msg){
+            echo "$msg";
+            Session::put('msg',null);
+
+        }
+        ?>
    
- <div class="col-md-8 offset-md-2" style="margin-top:10%">
-    <span class="anchor" id="formUserEdit"></span>
-     <hr class="my-5">
+    
  <div class="card card-outline-secondary">
 
                         <div class="card-header">
@@ -78,21 +76,23 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label">Category</label>
+                                    <label class="col-lg-3 col-form-label form-control-label">Image of Book</label>
                                     <div class="col-lg-9">
 
                                         <input type="file" name="book_image" value="fileupload" id="fileupload">
                                     </div>
-                                </div>    
-
-
-                                  <div class="form-group row">
+                                </div> 
+                                <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label"></label>
                                     <div class="col-lg-9">
-                                        <input type="reset" class="btn btn-secondary" value="Cancel">
-                                        <input type="submit" class="btn btn-primary" value="Add">
+                                        <input type="reset" class="btn btn-secondary" value="Reset">
+                                        <input type="button" id="cancle" onclick="location.href='/home';" class="btn btn-danger" onclick="cancle()" value="Cancle">
+                                        <input type="submit"  class="btn btn-primary" value="Add">
                                     </div>
-                                </div>
+                                </div>   
+
+
+                                  
                             </form>
                         </div>
                     </div>

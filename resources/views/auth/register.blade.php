@@ -66,9 +66,38 @@
          </div>
                  
                 <div class="form-group row">
-                  
+                  <select class="form-control " name="location" style=" border-radius: 20px; height:45px">
+                    <option default>Alexandria</option>
+                    <option value="Aswan">Aswan</option>
+                    <option value="Asyut">Asyut</option>
+                    <option value="Beheira">Beheira </option>
+                    <option value="Beni Suef">Beni Suef</option>
+                    <option value="Cairo">Cairo</option>
+                    <option value="Dakahlia">Dakahlia</option>
+                    <option value="Damietta">Damietta </option>
+                    <option value="Faiyum">Faiyum </option>
+                    <option value="Gharbia">Gharbia </option>
+                    <option value="Giza">Giza </option>
+                    <option value="Ismailia">Ismailia</option>
+                    <option value="Kafr El Sheikh">Kafr El Sheikh </option>
+                    <option value="Luxor">Luxor </option>
+                    <option value="Matruh">Matruh </option>
+                    <option value="Minya">Minya </option>
+                    <option value="Monufia">Monufia </option>
+                    <option value="New Valley">New Valley </option>
+                    <option value="orth Sinai">North Sinai</option>
+                    <option value="Port Said">Port Said </option>
+                    <option value="Qalyubia">Qalyubia</option>
+                    <option value="Qena">Qena</option>
+                    <option value="Red Sea">Red Sea</option>
+                    <option value="Sharqia">Sharqia</option>
+                    <option value="Sohag">Sohag </option>
+                    <option value="South Sina">South Sinai</option>
+                    <option value="Suez">Suez</option>
+                  </select>
 
-                <input type="text" name="location" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="enter your location*">
+
+                <!-- <input type="text" name="location" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="enter your location*"> -->
                 </div>
                 
                 <input type="submit" class="btn btn-primary btn-user btn-block" value="Register Account">
