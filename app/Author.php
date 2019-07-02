@@ -19,4 +19,8 @@ class Author extends Model
     {
         return $this->hasMany('App\Book');
     }
+    public function setAuthorNameAttribute($value)
+    {
+        $this->attributes['author_name'] = strtolower($value);
+    }
 }

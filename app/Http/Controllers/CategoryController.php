@@ -21,7 +21,7 @@ class CategoryController extends Controller
 }
     public function show($id){
         $user = User::findOrFail($id);
-    // dd(empty($user->interests));
+   
         
         if (empty($user->interests)) {
            return view('errors.403');
@@ -37,7 +37,8 @@ class CategoryController extends Controller
                     foreach ($cat_ids as $cat_id)
                     {
                         array_push($books, DB::table('books')->where([['cat_id', '=', $cat_id],
-                        ['accept','=','1']
+                        ['accept','=','1'],
+                        ['status','=','unborrow'],
                         ])->get());
                         
                     }
@@ -60,11 +61,7 @@ class CategoryController extends Controller
         $intrest->user_id = $user_id;
         $intrest->cat_id = $request->cat_id;
         $intrest->save();
-
-        //dd($cat_id);
-
-
-        return redirect('/login');
+        return redirect('/user/favour/{id}');
 
     }
 }

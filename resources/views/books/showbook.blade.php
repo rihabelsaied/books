@@ -10,7 +10,7 @@
 
 				<div class="breadcrumbs d-flex flex-row align-items-center">
 					<ul>
-						<li><a href="index.html">Home</a></li>
+						<li><a href="/home">Home</a></li>
 						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>{{$data->book_name}}</a></li>
 					</ul>
 				</div>
@@ -54,14 +54,15 @@
 						<li><span class="fa fa-star-o" aria-hidden="true" name="star" value="5,{{$data->id}}" ></span></li>
           </ul>
                    
-	
+				@if($data->user_id != Auth::id())
         <form action="/borrow/{{$data->id}}" method="post">
 					<input type="hidden" value="{{$data->id}}" name="book_id">
 					<input type="hidden" value="{{$data->user_id}}" name="owner_id">
 
             {{ csrf_field() }}                          
             <button type="submit" class="btn btn-success" >Borrow</button>
-        </form>       
+				</form> 
+				@endif      
                   
        
 
@@ -112,7 +113,7 @@
 									<h4>Additional Information</h4>
 								</div>
 								<div class="col-sm-6">
-									<!-- <p>Owner Of Book:{{$data->user->Username}}<span style="color:#FF6347" ></span></p> -->
+									<img src="{{asset('images/user/'.$data->user->avatar)}}" style="width: 150px;">
 								</div>
 								<div class="col-sm-6">
 								<h2>To contact with:{{$data->user->Username}} </h2>

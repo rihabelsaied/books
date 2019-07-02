@@ -85,24 +85,25 @@
 														document.getElementById('logout-form').submit();">
 													{{ __('Logout') }}
 												</a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                style="display: none;">
-                                                @csrf
-                                            </form>
-										</li>
-										</ul>
+												<form id="logout-form" action="{{ route('logout') }}" method="POST"
+													style="display: none;">
+														@csrf
+												</form>
+								</li>
+					    </ul>
 						</li>	
 						
 								
 
 							<li class="checkout">
-								<a href="#">
+								<a href="/user/profile/{{Auth::id()}}">
 								<i class="fa fa-bell" aria-hidden="true"></i>
-								<span id="checkout_items" class="checkout_items">2</span>
+								<span id="checkout_items" class="checkout_items">{{$count}}</span>
 								</a>
-							</li>
-		
 								
+							</li>
+							
+            
 							@endif
 						
 						</ul>

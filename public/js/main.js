@@ -1,4 +1,51 @@
 $(document).ready(function(){
+
+
+
+    /*********************************delet book */
+$(".deleteRecord").click(function(event){
+    var id = $(this).attr("id");    
+    console.log(id); 
+    parent=event.target.parentElement.parentElement;  
+    $.ajax(
+    {
+        url: "/admin/books/"+id,        
+        type:'get',   
+        contentType:false,
+        processData:false,
+        success: function (data){
+            console.log(data.msg);
+             parent.remove();
+        },
+        error:function(data){
+            
+            console.log("does not work");
+        }
+    });
+   
+    });
+
+    $(".deleteUser").click(function(event){
+        var id = $(this).attr("id");    
+        console.log(id); 
+        parent=event.target.parentElement.parentElement;  
+        $.ajax(
+        {
+            url: "/admin/deleteuser/"+id,        
+            type:'get',   
+            contentType:false,
+            processData:false,
+            success: function (data){
+                console.log(data.msg);
+                 parent.remove();
+            },
+            error:function(data){
+                
+                console.log("does not work");
+            }
+        });
+    });
+     
 /****************************** search function */
     $('#search').keyup(function(){
         var query = $(this).val();

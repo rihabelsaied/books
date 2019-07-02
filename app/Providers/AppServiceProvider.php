@@ -1,6 +1,11 @@
 <?php
 
 namespace App\Providers;
+use View;
+use auth;
+use Illuminate\Support\Facades\DB;
+
+
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -22,6 +27,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        
+        View::composer('*',function($view){
+            $user_id = Auth::id();
+            $view->with('count',DB::table('books_users')->where('needed_id','=',$user_id)->count());
+
+        });
+
 
     }
 }

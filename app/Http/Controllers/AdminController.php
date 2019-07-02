@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\User;
-use App\Author;
-use Illuminate\Http\Request;
+
 use App\Category;
 
 class AdminController extends Controller
@@ -34,7 +33,9 @@ class AdminController extends Controller
         }
       $deleteuser->delete();
 
-        return redirect('/panal');
+      return response()->json([
+        'msg'=>'data',
+        ]);
  
     }
     public function index()
@@ -54,15 +55,22 @@ class AdminController extends Controller
     public function remove($id)
     {
         $book = Book::find($id);
-        $book->delete();             
+        $book->delete();
+        return response()->json([
+            'msg'=>'data',
+        ]);
+                     
     }
     public function accept($id)
     {
-        $book=Book::find($id);
+        $book=Book::find($id); 
+        $cat=Category::find($book->cat_id);
+        $catname=$cat->name;
+        // dd($catname);
         if($book->accept==0){
             $book->update(['accept'=>1]);
         }
-        return redirect('/admin/panal');
+        return redirect('/admin/category/'.$catname);
     }
 
     /***************** books category */
@@ -70,25 +78,28 @@ class AdminController extends Controller
     {
         $catName = Category::whereName($name)->value('id');
         // dd($catName);
-        $books = Book::whereCat_id($catName)->whereStatus('unborrow')->get();
+        $books = Book::whereCat_id($catName)->whereStatus('unborrow')->whereAccept('0')->get();  
+        $approv_unborrows = Book::whereCat_id($catName)->whereStatus('unborrow')->whereAccept('1')->get();      
         $Borrows = Book::whereCat_id($catName)->whereStatus('borrow')->get();
+        $booksUnaccept = Book::whereCat_id($catName)->whereAccept('0')->get();
         $counts=count($books);
         $count = count($Borrows);
-       
+        $penddingbooks=count($booksUnaccept); 
+        $count_approv_unborrow=count($approv_unborrows);    
 
-       return view('admin.books',compact(['books','counts','Borrows']));
+       return view('admin.books',compact(['books','counts','Borrows','penddingbooks','count','count_approv_unborrow','approv_unborrows']));
 
     }
     public function dashbord()
     {   $books = Book::all()->count();
         $booksBorrow= Book::whereStatus('borrow')->count();
-        $booksUnborrow= Book::whereStatus('unborrow')->count();
-        $booksPend= Book::whereStatus('pending')->count();
+        $booksUnborrow= Book::whereStatus('unborrow')->whereAccept('1')->count();
+        
         $booksAccept= Book::whereAccept('0')->count();
 
         $users = User::whereRole(0)->count();
 
-        return view('admin.index',compact(['booksBorrow','booksUnborrow','booksPend','users','booksAccept','books']));
+        return view('admin.index',compact(['booksBorrow','booksUnborrow','users','booksAccept','books']));
 
 
     }

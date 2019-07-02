@@ -13,7 +13,7 @@
 					<div class="main_slider_content">
 						<h1 style="color:white">Love reading? </h1>
 						<h6 style="color:white">You'll find that there are many communities made specifically for book lovers</h6> 
-						<div class="red_button shop_now_button"><a href="#">Borrow now</a></div>
+						<div class="red_button shop_now_button"><a href="#borrow">Borrow now</a></div>
 					</div>
 				</div>
 			</div>
@@ -78,7 +78,7 @@
 	</div>
 	<!-- Best Sellers -->
 
-	<div class="best_sellers">
+	<div class="best_sellers" id="borrow">
 		<div class="container">
 			<div class="row">
 				<div class="col text-center">
@@ -102,7 +102,7 @@
 										</div><img src="{{asset('images/books/'.$book->book_image)}}" alt=""></a>
 										<div class="favorite favorite_left"></div>
 										<div class="product_info">
-											<h6 class="product_name"><a href="single.html">{{$book->author->author_name}}</a></h6>
+											<h6 class="product_name"><a href="{{url('/books/showbook/'.$book->id)}}">{{$book->author->author_name}}</a></h6>
 											<div class="product_price">Avaliable</div>
 										</div>
 									</div>

@@ -10,7 +10,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a href="/panal">USERS</a></div>
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a href="{{route('user')}}">USERS</a></div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$users}}</div>
                     </div>
                     <div class="col-auto">
@@ -25,7 +25,7 @@
        <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a href="/panal">Total Num Of Books</a></div>
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Total Num Of Books</a></div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$books}}</div>
           </div>
          <div class="col-auto">
@@ -46,7 +46,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Books Pending by admin</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><aclass="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Books Pending by admin</aclass="nav-link></div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$booksAccept}}</div>
                     </div>
                     <div class="col-auto">
@@ -64,7 +64,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Books (Unborrow)</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Books (Unborrow)</a></div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$booksUnborrow}}</div>
                     </div>
                     <div class="col-auto">
@@ -81,7 +81,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">books (Borrow)</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><aclass="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">books (Borrow)</aclass="nav-link></div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$booksBorrow}}</div>
                     </div>
                     <div class="col-auto">
@@ -90,31 +90,6 @@
 </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$booksPend}}</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-         
-
-
-
-
-
-
+            </div>            
+          </div>   
 @endsection

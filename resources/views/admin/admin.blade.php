@@ -33,7 +33,7 @@
                       <td>{{$user->phone}}</td>
                       <td>{{$user->location}}</td>
                       
-                      <td><a href="/admin/deleteuser/{{$user->id}}" class="btn btn-outline-danger">Delete</td>
+                    <td><a  class="btn btn-outline-danger deleteUser" id="{{$user->id}}">Delete</td>
                     </tr>
                     
                       @endforeach
@@ -44,11 +44,4 @@
               </div>
             </div>
           </div>
-
-
-
-
-
-
-
 @endsection

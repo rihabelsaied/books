@@ -8,3 +8,14 @@
 background: url("../images/books/bg.jpeg");
 
 }
+#nav-profile{
+    width:728px;
+    margin-left: 16%;
+}
+.book{
+    width:150px;
+    height:150px
+}
+td{
+    text-align: center;
+}

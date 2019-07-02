@@ -20,9 +20,11 @@ Auth::routes();
 /*admin route*/
 Route::group(['middleware'=>'admin','prefix'=>'/admin'],function(){
    
-    Route::get('/panal','AdminController@index');
+    Route::get('/panal','AdminController@index')->name('user');
     Route::get('/deleteuser/{user}','AdminController@destroy');  
-    Route::get('/category/{name}','AdminController@selectBook');  
+    Route::get('/category/{name}','AdminController@selectBook'); 
+    Route::get('/books/accept/{book}','AdminController@accept');    
+    Route::get('/books/{book}','AdminController@remove');
     Route::get('/dashbord','AdminController@dashbord');  
     
     
@@ -49,6 +51,8 @@ Route::group(['prefix'=>'/books','middleware'=>'auth'],function (){
     Route::get("/showbook/{id}","BookController@showbook");
     Route::post("/editbook/{id}","BookController@edit");
     Route::put("/profile/update/{id}","BookController@update");
+    Route::put("/accept/{id}","BookController@changeStatus");
+
 
     Route::get("/authorbook/{id}","BookController@authorbook");
 
@@ -84,7 +88,8 @@ Route::get('/rateStars/{rate}','BookController@rating');
 /***************************** search */
 Route::post('/searchautocomplete/searchfetch', 'BookController@fetch')->name('autocompletesearch.fetchsearch');
 
-/***************************** test */
+
+
 
 
 

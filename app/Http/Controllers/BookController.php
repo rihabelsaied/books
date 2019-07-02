@@ -14,11 +14,10 @@ use Illuminate\Http\Response;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-// use Session;
+
 
 use auth;
-use Illuminate\Support\Facades\Auth as IlluminateAuth;
-use SebastianBergmann\Environment\Console;
+
 use App\Rate;
 
 class BookController extends Controller
@@ -79,12 +78,16 @@ class BookController extends Controller
     public function show(Request $request)
     {
         $user_id = Auth::user()->id;
+        $loc = Auth::user()->location;
+        // dd($loc);
 
         $books = Book::where([
             ['accept', '=', '1'],
             ['status', '=', 'unborrow'],
+           
 
         ])->orderBy('id', 'desc')->get();
+     
 
 
         return view('home', compact('books'));
@@ -191,5 +194,6 @@ class BookController extends Controller
         return redirect()->back();
         
     }
+    
 
-}
+ }

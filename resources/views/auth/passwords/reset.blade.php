@@ -34,7 +34,7 @@
                    @endif    
                 </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required id="exampleInputPassword" placeholder="Password">
+                      <input type="password" class="form-control form-control-user{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required id="exampleInputPassword" placeholder="New Password">
                       @if ($errors->has('password'))
                         <span class="invalid-feedback" role="alert">
                          <strong>{{ $errors->first('password') }}</strong>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="form-group ">
 
-                     <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" required>
+                     <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" placeholder="confirm new password"uired>
                    </div>
                    <input type="submit" class="btn btn-primary btn-user btn-block" value="{{ __('Reset Password') }}">
 
